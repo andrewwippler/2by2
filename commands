@@ -1,0 +1,12 @@
+php artisan infyom:api_scaffold NAME
+
+name string,255 text
+
+type integer:unsigned:foreign,visit_types,id select
+
+php artisan make:seeder SpiritualConditionTableSeeder
+
+http://labs.infyom.com/laravelgenerator/docs/5.3/getting-started
+http://labs.infyom.com/laravelgenerator/docs/5.3/fields-input-guide
+
+touch database/database.sqlite
