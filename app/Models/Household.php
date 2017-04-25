@@ -15,7 +15,7 @@ class Household extends Model
     use SoftDeletes;
 
     public $table = 'households';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -78,7 +78,7 @@ class Household extends Model
      **/
     public function people()
     {
-        return $this->hasMany(\App\Models\Person::class, 'id');
+        return $this->hasMany(\App\Models\Person::class, 'household_id');
     }
 
     /**
@@ -94,6 +94,6 @@ class Household extends Model
      **/
     public function visits()
     {
-        return $this->hasMany(\App\Models\Visit::class, 'id');
+        return $this->hasMany(\App\Models\Visit::class, 'household_id');
     }
 }

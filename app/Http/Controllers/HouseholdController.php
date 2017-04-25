@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Department;
+use Illuminate\Support\Facades\Auth;
 
 class HouseholdController extends AppBaseController
 {
@@ -43,7 +45,12 @@ class HouseholdController extends AppBaseController
      */
     public function create()
     {
-        return view('households.create');
+        $dept = Department::all();
+
+
+        return view('households.create')
+            ->with('department', $this->makePrettyArray($dept))
+            ->with('user', Auth::id());
     }
 
     /**

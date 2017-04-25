@@ -13,7 +13,7 @@
 <!-- Department Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('department', 'Department:') !!}
-    {!! Form::select('department', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('department', $department, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Connected Field -->
@@ -21,7 +21,7 @@
     {!! Form::label('connected', 'Connected:') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('connected', false) !!}
-        {!! Form::checkbox('connected', '1', null) !!} 1
+        {!! Form::checkbox('connected', null, null) !!} 1
     </label>
 </div>
 
@@ -86,10 +86,7 @@
 </div>
 
 <!-- User Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user', 'User:') !!}
-    {!! Form::text('user', null, ['class' => 'form-control']) !!}
-</div>
+    {!! Form::hidden('user', $user) !!}
 
 <!-- Visits Field -->
 <div class="form-group col-sm-6">

@@ -35,13 +35,9 @@ class VisitController extends AppBaseController
 
         $visit_types = VisitType::all();
 
-        for ($i=0; $i < count($visit_types); $i++) {
-            $visit_types_array[$i] = $visit_types[$i]->name;
-        }
-
         return view('visits.index')
             ->with('visits', $visits)
-            ->with('visit_type', $visit_types_array);
+            ->with('visit_type', $this->makePrettyArray($visit_types));
     }
 
     /**
@@ -119,13 +115,9 @@ class VisitController extends AppBaseController
 
         $visit_types = VisitType::all();
 
-        for ($i=0; $i < count($visit_types); $i++) {
-            $visit_types_array[$i] = $visit_types[$i]->name;
-        }
-
         return view('visits.edit')
             ->with('visit', $visit)
-            ->with('visit_type', $visit_types_array);
+            ->with('visit_type', $this->makePrettyArray($visit_types));
     }
 
     /**
