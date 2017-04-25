@@ -10,4 +10,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class AppBaseController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function makePrettyArray($input)
+    {
+        for ($i=0; $i < count($input); $i++) {
+            $output[$i] = $input[$i]->name;
+        }
+
+        return $output;
+    }
 }

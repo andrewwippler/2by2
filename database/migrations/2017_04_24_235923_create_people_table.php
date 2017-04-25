@@ -16,13 +16,13 @@ class CreatePeopleTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('phone_number');
+            $table->string('middle_name')->nullable();
+            $table->string('phone_number')->nullable();
             $table->integer('LifeStage', false);
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->integer('spiritual_condition', false);
             $table->integer('prospect_status', false);
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->integer('marital_status', false);
             $table->integer('relationship', false);
             $table->timestamps();

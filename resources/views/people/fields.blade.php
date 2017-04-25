@@ -13,7 +13,7 @@
 <!-- Lifestage Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('LifeStage', 'Lifestage:') !!}
-    {!! Form::select('LifeStage', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('LifeStage', $lifestage, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Email Field -->
@@ -22,16 +22,22 @@
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Cell Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('phone_number', 'Cell Phone:') !!}
+    {!! Form::tel('phone_number', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Spiritual Condition Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('spiritual_condition', 'Spiritual Condition:') !!}
-    {!! Form::select('spiritual_condition', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('spiritual_condition', $spiritual_condition, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Prospect Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('prospect_status', 'Prospect Status:') !!}
-    {!! Form::select('prospect_status', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('prospect_status', $prospect_status, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Notes Field -->
@@ -43,13 +49,13 @@
 <!-- Marital Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('marital_status', 'Marital Status:') !!}
-    {!! Form::select('marital_status', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('marital_status', $marital_status, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Relationship Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('relationship', 'Relationship:') !!}
-    {!! Form::select('relationship', ], null, ['class' => 'form-control']) !!}
+    {!! Form::select('relationship', $relationship, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

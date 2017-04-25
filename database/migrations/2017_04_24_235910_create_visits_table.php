@@ -16,7 +16,7 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('type', false);
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->datetime('made');
             $table->timestamps();
             $table->softDeletes();

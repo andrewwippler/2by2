@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\LifeStage;
+use App\Models\SpiritualCondition;
+use App\Models\ProspectStatus;
+use App\Models\MaritalStatus;
+use App\Models\Relationship;
 
 class PersonController extends AppBaseController
 {
@@ -43,7 +48,19 @@ class PersonController extends AppBaseController
      */
     public function create()
     {
-        return view('people.create');
+
+        $life = LifeStage::all();
+        $spirit = SpiritualCondition::all();
+        $prospect = ProspectStatus::all();
+        $marital = MaritalStatus::all();
+        $relation = Relationship::all();
+
+        return view('people.create')
+            ->with('lifestage', $this->makePrettyArray($life))
+            ->with('spiritual_condition', $this->makePrettyArray($spirit))
+            ->with('prospect_status', $this->makePrettyArray($prospect))
+            ->with('marital_status', $this->makePrettyArray($marital))
+            ->with('relationship', $this->makePrettyArray($relation));
     }
 
     /**
@@ -101,7 +118,20 @@ class PersonController extends AppBaseController
             return redirect(route('people.index'));
         }
 
-        return view('people.edit')->with('person', $person);
+        $life = LifeStage::all();
+        $spirit = SpiritualCondition::all();
+        $prospect = ProspectStatus::all();
+        $marital = MaritalStatus::all();
+        $relation = Relationship::all();
+
+        return view('people.edit')
+            ->with('person', $person)
+            ->with('lifestage', $this->makePrettyArray($life))
+            ->with('spiritual_condition', $this->makePrettyArray($spirit))
+            ->with('prospect_status', $this->makePrettyArray($prospect))
+            ->with('marital_status', $this->makePrettyArray($marital))
+            ->with('relationship', $this->makePrettyArray($relation));
+
     }
 
     /**
