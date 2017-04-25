@@ -108,7 +108,13 @@ class HouseholdController extends AppBaseController
             return redirect(route('households.index'));
         }
 
-        return view('households.edit')->with('household', $household);
+        $dept = Department::all();
+
+
+        return view('households.edit')
+            ->with('household', $household)
+            ->with('department', $this->makePrettyArray($dept))
+            ->with('user', Auth::id());
     }
 
     /**

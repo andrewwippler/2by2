@@ -1,5 +1,5 @@
 <li class="treeview {{ Request::is('households*','people*','visits*') ? 'active' : '' }}">
-    <a href="{!! route('households.index') !!}"><i class="fa fa-home"></i><span>Households</span></a>
+    <a href="{!! route('households.index') !!}"><i class="fa fa-home"></i><span>Prospects</span></a>
 </li>
 
 <li class="treeview {{ Request::is('departments*',
