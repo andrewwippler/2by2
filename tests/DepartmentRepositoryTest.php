@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use App\Models\Department;
 use App\Repositories\DepartmentRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

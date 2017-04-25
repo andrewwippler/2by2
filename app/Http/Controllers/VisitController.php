@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\VisitType;
 
 class VisitController extends AppBaseController
 {
@@ -43,7 +44,10 @@ class VisitController extends AppBaseController
      */
     public function create()
     {
-        return view('visits.create');
+        $visit_types = VisitType::all();
+        \Debugbar::info($visit_types);
+
+        return view('visits.create')->with('visit_type', $visit_types);
     }
 
     /**

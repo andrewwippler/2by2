@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use App\Models\Household;
 use App\Repositories\HouseholdRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
