@@ -19,3 +19,23 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('departments', 'DepartmentController');
+
+Route::resource('lifeStages', 'LifeStageController');
+
+Route::resource('maritalStatuses', 'MaritalStatusController');
+
+Route::resource('prospectStatuses', 'ProspectStatusController');
+
+Route::resource('relationships', 'RelationshipController');
+
+Route::resource('spiritualConditions', 'SpiritualConditionController');
+
+Route::resource('visitTypes', 'VisitTypeController');
+
+Route::resource('visits', 'VisitController');
+
+Route::resource('people', 'PersonController');
+
+Route::resource('households', 'HouseholdController');

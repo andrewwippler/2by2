@@ -11,7 +11,7 @@ class MaritalStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('maritial_statuses')->insert([
+        DB::table('marital_statuses')->insert([
             ['name' => 'Married'],
             ['name' => 'Divorced'],
             ['name' => 'Separated'],
