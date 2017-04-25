@@ -33,8 +33,15 @@ class VisitController extends AppBaseController
         $this->visitRepository->pushCriteria(new RequestCriteria($request));
         $visits = $this->visitRepository->all();
 
+        $visit_types = VisitType::all();
+
+        for ($i=0; $i < count($visit_types); $i++) {
+            $visit_types_array[$i] = $visit_types[$i]->name;
+        }
+
         return view('visits.index')
-            ->with('visits', $visits);
+            ->with('visits', $visits)
+            ->with('visit_type', $visit_types_array);
     }
 
     /**
@@ -45,9 +52,13 @@ class VisitController extends AppBaseController
     public function create()
     {
         $visit_types = VisitType::all();
-        \Debugbar::info($visit_types);
 
-        return view('visits.create')->with('visit_type', $visit_types);
+        for ($i=0; $i < count($visit_types); $i++) {
+            $visit_types_array[$i] = $visit_types[$i]->name;
+        }
+
+        return view('visits.create')
+            ->with('visit_type', $visit_types_array);
     }
 
     /**
@@ -85,7 +96,8 @@ class VisitController extends AppBaseController
             return redirect(route('visits.index'));
         }
 
-        return view('visits.show')->with('visit', $visit);
+        return view('visits.show')
+            ->with('visit', $visit);
     }
 
     /**
@@ -105,7 +117,15 @@ class VisitController extends AppBaseController
             return redirect(route('visits.index'));
         }
 
-        return view('visits.edit')->with('visit', $visit);
+        $visit_types = VisitType::all();
+
+        for ($i=0; $i < count($visit_types); $i++) {
+            $visit_types_array[$i] = $visit_types[$i]->name;
+        }
+
+        return view('visits.edit')
+            ->with('visit', $visit)
+            ->with('visit_type', $visit_types_array);
     }
 
     /**

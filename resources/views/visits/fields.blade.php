@@ -2,10 +2,6 @@
 <div class="form-group col-sm-6">
     {!! Form::label('type', 'Type:') !!}
 
-    <!-- Generating A Drop-Down List With Selected Default
-
-    echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S'); -->
-
     {!! Form::select('type', $visit_type, null, ['class' => 'form-control']) !!}
 </div>
 
