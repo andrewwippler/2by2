@@ -71,15 +71,15 @@ class HouseholdController extends AppBaseController
         $people_count = count($input['first_name']);
 
         for ($i=0; $i < $people_count; $i++) {
-            $people[] = new Person([
-                'first_name' => $input['first_name'][$i],
-                'email' => $input['email'][$i],
-                'phone_number' => $input['phone_number'][$i],
-                'relationship' => $input['relationship'][$i],
-            ]);
+            if ($input['first_name'][$i] != '') {
+                $people[] = new Person([
+                    'first_name' => $input['first_name'][$i],
+                    'email' => $input['email'][$i],
+                    'phone_number' => $input['phone_number'][$i],
+                    'relationship' => $input['relationship'][$i],
+                ]);
+            }
         }
-
-        \Debugbar::info($input);
 
         $household = $this->householdRepository->create($input)->people()->saveMany($people);
 
@@ -87,13 +87,6 @@ class HouseholdController extends AppBaseController
 
         return redirect(route('households.index'));
 
-        // $dept = Department::all();
-        // $rela = Relationship::all();
-        // return view('households.create')
-        //     ->with('department', $this->makePrettyArray($dept))
-        //     ->with('relationship', $this->makePrettyArray($rela))
-        //     ->with('user', Auth::id())
-        //     ->with('today', \Carbon\Carbon::now());
     }
 
     /**
@@ -125,7 +118,7 @@ class HouseholdController extends AppBaseController
      */
     public function edit($id)
     {
-        $household = $this->householdRepository->findWithoutFail($id);
+        $household = $this->householdRepository->findWithoutFail($id)->load('people');
 
         if (empty($household)) {
             Flash::error('Household not found');
@@ -134,11 +127,13 @@ class HouseholdController extends AppBaseController
         }
 
         $dept = Department::all();
-
+        $rela = Relationship::all();
 
         return view('households.edit')
             ->with('household', $household)
+            ->with('people', $household['relations']['people'])
             ->with('department', $this->makePrettyArray($dept))
+            ->with('relationship', $this->makePrettyArray($rela))
             ->with('user', Auth::id());
     }
 
@@ -159,6 +154,23 @@ class HouseholdController extends AppBaseController
 
             return redirect(route('households.index'));
         }
+
+        // Maybe I do not want people to update here.
+
+        // $people_count = count($input['first_name']);
+        //
+        // for ($i=0; $i < $people_count; $i++) {
+        //     if ($input['first_name'][$i] != '') {
+        //         $people[] = new Person([
+        //             'first_name' => $input['first_name'][$i],
+        //             'email' => $input['email'][$i],
+        //             'phone_number' => $input['phone_number'][$i],
+        //             'relationship' => $input['relationship'][$i],
+        //         ]);
+        //     }
+        // }
+
+        // $household = $this->householdRepository->update($request->all(), $id)->people()->saveMany($people);
 
         $household = $this->householdRepository->update($request->all(), $id);
 
