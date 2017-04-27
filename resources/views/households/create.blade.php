@@ -21,24 +21,25 @@
                     </div>
 
 <!-- BEGIN PERSON -->
-<!-- First Name Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('first_name', 'First Name:') !!}
-    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
-</div>
+<div class="row col-lg-12 col-sm-6 person-group">
+    <!-- First Name Field -->
+    <div class="form-group col-lg-3 col-sm-6">
+        {!! Form::label('first_name', 'First Name:') !!}
+        {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Email Field -->
+    <div class="form-group col-lg-3 col-sm-6">
+        {!! Form::label('email', 'Email:') !!}
+        {!! Form::email('email', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Cell Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('phone_number', 'Cell Phone:') !!}
-    {!! Form::tel('phone_number', null, ['class' => 'form-control']) !!}
+    <!-- Cell Field -->
+    <div class="form-group col-lg-3 col-sm-6">
+        {!! Form::label('phone_number', 'Cell Phone:') !!}
+        {!! Form::tel('phone_number', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
-
 <!-- END PERSON -->
                     <!-- Department Field -->
                     <div class="form-group col-sm-6">
@@ -57,31 +58,32 @@
 
 
                     <!-- Address1 Field -->
+
                     <div class="form-group col-sm-6">
                         {!! Form::label('address1', 'Address1:') !!}
                         {!! Form::text('address1', null, ['class' => 'form-control']) !!}
                     </div>
-
+                <div class="clearfix hidden-xs hidden-sm"></div>
                     <!-- Address2 Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('address2', 'Address2:') !!}
                         {!! Form::text('address2', null, ['class' => 'form-control']) !!}
                     </div>
-
+                <div class="clearfix hidden-xs hidden-sm"></div>
                     <!-- City Field -->
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-md-2 col-sm-6">
                         {!! Form::label('city', 'City:') !!}
                         {!! Form::text('city', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <!-- State Field -->
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-md-1 col-sm-6">
                         {!! Form::label('state', 'State:') !!}
                         {!! Form::text('state', null, ['class' => 'form-control']) !!}
                     </div>
 
                     <!-- Zip Field -->
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-md-2 col-sm-6">
                         {!! Form::label('zip', 'Zip:') !!}
                         {!! Form::text('zip', null, ['class' => 'form-control']) !!}
                     </div>
