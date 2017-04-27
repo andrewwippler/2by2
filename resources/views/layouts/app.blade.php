@@ -88,7 +88,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2017 Andrew Wippler.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -108,15 +108,15 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
+                    2 by 2
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
+                {{-- <ul class="nav navbar-nav">
                     <li><a href="{!! url('/home') !!}">Home</a></li>
-                </ul>
+                </ul> --}}
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

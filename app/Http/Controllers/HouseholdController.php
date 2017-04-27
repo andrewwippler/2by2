@@ -47,10 +47,10 @@ class HouseholdController extends AppBaseController
     {
         $dept = Department::all();
 
-
         return view('households.create')
             ->with('department', $this->makePrettyArray($dept))
-            ->with('user', Auth::id());
+            ->with('user', Auth::id())
+            ->with('today', \Carbon\Carbon::now());
     }
 
     /**

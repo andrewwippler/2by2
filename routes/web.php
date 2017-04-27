@@ -11,31 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'HouseholdController@index');
 
-Route::resource('departments', 'DepartmentController');
+    Route::resource('departments', 'DepartmentController');
 
-Route::resource('lifeStages', 'LifeStageController');
+    Route::resource('lifeStages', 'LifeStageController');
 
-Route::resource('maritalStatuses', 'MaritalStatusController');
+    Route::resource('maritalStatuses', 'MaritalStatusController');
 
-Route::resource('prospectStatuses', 'ProspectStatusController');
+    Route::resource('prospectStatuses', 'ProspectStatusController');
 
-Route::resource('relationships', 'RelationshipController');
+    Route::resource('relationships', 'RelationshipController');
 
-Route::resource('spiritualConditions', 'SpiritualConditionController');
+    Route::resource('spiritualConditions', 'SpiritualConditionController');
 
-Route::resource('visitTypes', 'VisitTypeController');
+    Route::resource('visitTypes', 'VisitTypeController');
 
-Route::resource('visits', 'VisitController');
+    Route::resource('visits', 'VisitController');
 
-Route::resource('people', 'PersonController');
+    Route::resource('people', 'PersonController');
 
-Route::resource('households', 'HouseholdController');
+    Route::resource('households', 'HouseholdController');
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});

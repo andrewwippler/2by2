@@ -1,3 +1,5 @@
+{{ csrf_field() }}
+
 <!-- Last Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('last_name', 'Last Name:') !!}
@@ -17,11 +19,10 @@
 </div>
 
 <!-- Connected Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('connected', 'Connected:') !!}
-    <label class="checkbox-inline">
+<div class="form-group checkbox col-sm-6">
+    <label class="checkbox">
         {!! Form::hidden('connected', false) !!}
-        {!! Form::checkbox('connected', null, null) !!} 1
+        {!! Form::checkbox('connected', null, null) !!} Connected
     </label>
 </div>
 
