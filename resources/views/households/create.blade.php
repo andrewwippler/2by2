@@ -47,8 +47,14 @@
         {!! Form::tel('phone_number[]', null, ['class' => 'form-control']) !!}
     </div>
 
+    <!-- Relationship Field -->
+    <div class="form-group col-sm-2 col-xs-12">
+        {!! Form::label('relationship[]', 'Relationship:') !!}
+        {!! Form::select('relationship[]', $relationship, null, ['class' => 'form-control']) !!}
+    </div>
+
     <!-- +/- -->
-    <div class="form-group col-sm-3 col-xs-12">
+    <div class="form-group col-sm-1 col-xs-12">
         <br>
         <a href="javascript:void(0);" class="btn btn-success add_button"><i class="fa fa-plus"></i></a>
     </div>

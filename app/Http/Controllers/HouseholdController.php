@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Department;
 use App\Models\Relationship;
+use App\Models\Person;
 use Illuminate\Support\Facades\Auth;
 
 class HouseholdController extends AppBaseController
@@ -67,11 +68,32 @@ class HouseholdController extends AppBaseController
     {
         $input = $request->all();
 
-        $household = $this->householdRepository->create($input);
+        $people_count = count($input['first_name']);
+
+        for ($i=0; $i < $people_count; $i++) {
+            $people[] = new Person([
+                'first_name' => $input['first_name'][$i],
+                'email' => $input['email'][$i],
+                'phone_number' => $input['phone_number'][$i],
+                'relationship' => $input['relationship'][$i],
+            ]);
+        }
+
+        \Debugbar::info($input);
+
+        $household = $this->householdRepository->create($input)->people()->saveMany($people);
 
         Flash::success('Household saved successfully.');
 
         return redirect(route('households.index'));
+
+        // $dept = Department::all();
+        // $rela = Relationship::all();
+        // return view('households.create')
+        //     ->with('department', $this->makePrettyArray($dept))
+        //     ->with('relationship', $this->makePrettyArray($rela))
+        //     ->with('user', Auth::id())
+        //     ->with('today', \Carbon\Carbon::now());
     }
 
     /**

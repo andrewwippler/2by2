@@ -15,7 +15,7 @@ class Person extends Model
     use SoftDeletes;
 
     public $table = 'people';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -66,7 +66,7 @@ class Person extends Model
      **/
     public function lifeStage()
     {
-        return $this->belongsTo(\App\Models\LifeStage::class, 'id');
+        return $this->hasOne(\App\Models\LifeStage::class, 'id');
     }
 
     /**
@@ -74,7 +74,7 @@ class Person extends Model
      **/
     public function spiritualCondition()
     {
-        return $this->belongsTo(\App\Models\SpiritualCondition::class, 'id');
+        return $this->hasOne(\App\Models\SpiritualCondition::class, 'id');
     }
 
     /**
@@ -82,7 +82,7 @@ class Person extends Model
      **/
     public function prospectStatus()
     {
-        return $this->belongsTo(\App\Models\ProspectStatus::class, 'id');
+        return $this->hasOne(\App\Models\ProspectStatus::class, 'id');
     }
 
     /**
@@ -90,7 +90,7 @@ class Person extends Model
      **/
     public function maritalStatus()
     {
-        return $this->belongsTo(\App\Models\MaritalStatus::class, 'id');
+        return $this->hasOne(\App\Models\MaritalStatus::class, 'id');
     }
 
     /**
@@ -98,6 +98,14 @@ class Person extends Model
      **/
     public function relationship()
     {
-        return $this->belongsTo(\App\Models\Relationship::class, 'id');
+        return $this->hasOne(\App\Models\Relationship::class, 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function household()
+    {
+        return $this->belongsTo(\App\Models\Household::class, 'id');
     }
 }
