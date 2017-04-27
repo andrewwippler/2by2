@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Department;
+use App\Models\Relationship;
 use Illuminate\Support\Facades\Auth;
 
 class HouseholdController extends AppBaseController
@@ -46,9 +47,11 @@ class HouseholdController extends AppBaseController
     public function create()
     {
         $dept = Department::all();
+        $rela = Relationship::all();
 
         return view('households.create')
             ->with('department', $this->makePrettyArray($dept))
+            ->with('relationship', $this->makePrettyArray($rela))
             ->with('user', Auth::id())
             ->with('today', \Carbon\Carbon::now());
     }
