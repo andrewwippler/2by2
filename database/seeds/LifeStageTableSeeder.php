@@ -12,6 +12,7 @@ class LifeStageTableSeeder extends Seeder
     public function run()
     {
         DB::table('life_stages')->insert([
+            ['name' => '--'],
             ['name' => 'Infant'],
             ['name' => 'Baby'],
             ['name' => 'Toddler'],

@@ -12,6 +12,7 @@ class RelationshipsTableSeeder extends Seeder
     public function run()
     {
         DB::table('relationships')->insert([
+            ['name' => '--'],
             ['name' => 'Husband'],
             ['name' => 'Wife'],
             ['name' => 'Fiance'],
