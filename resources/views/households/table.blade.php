@@ -2,7 +2,6 @@
     <thead>
         <th>Last Name</th>
         <th>People</th>
-        <th>Home Phone</th>
         <th>Plan To Visit</th>
         <th colspan="3"></th>
     </thead>
@@ -11,7 +10,6 @@
         <tr>
             <td>{!! $household->last_name !!}</td>
             <td>{!! $household->people !!}</td>
-            <td>{!! $household->home_phone !!}</td>
             <td>{!! $household->plan_to_visit !!}</td>
 
             <td>

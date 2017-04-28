@@ -13,6 +13,7 @@ use Response;
 use App\Models\Department;
 use App\Models\Relationship;
 use App\Models\Person;
+use App\Models\VisitType;
 use Illuminate\Support\Facades\Auth;
 
 class HouseholdController extends AppBaseController
@@ -58,6 +59,22 @@ class HouseholdController extends AppBaseController
     }
 
     /**
+     * Show the form for creating a new Household visit.
+     *
+     * @return Response
+     */
+    public function createVisit()
+    {
+
+        $visi = VisitType::all();
+
+        return view('households.create_visit')
+            ->with('visit_type', $visi)
+            ->with('user', Auth::id())
+            ->with('today', \Carbon\Carbon::now());
+    }
+
+    /**
      * Store a newly created Household in storage.
      *
      * @param CreateHouseholdRequest $request
@@ -98,7 +115,7 @@ class HouseholdController extends AppBaseController
      */
     public function show($id)
     {
-        $household = $this->householdRepository->findWithoutFail($id);
+        $household = $this->householdRepository->findWithoutFail($id)->load('people','visits');
 
         if (empty($household)) {
             Flash::error('Household not found');
@@ -106,7 +123,19 @@ class HouseholdController extends AppBaseController
             return redirect(route('households.index'));
         }
 
-        return view('households.show')->with('household', $household);
+        $dept = Department::all();
+        $rela = Relationship::all();
+        $visi = VisitType::all();
+
+        return view('households.show')
+            ->with('household', $household)
+            ->with('people', $household['relations']['people'])
+            ->with('visits', $household['relations']['visits'])
+            ->with('visit_type', $visi)
+            ->with('department', $this->makePrettyArray($dept))
+            ->with('relationship', $this->makePrettyArray($rela))
+            ->with('user', Auth::id());
+
     }
 
     /**
