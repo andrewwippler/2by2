@@ -16,8 +16,11 @@
 <!-- Made Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('made', 'Made:') !!}
-    {!! Form::date('made', null, ['class' => 'form-control']) !!}
+    {!! Form::date('made', $today, ['class' => 'form-control']) !!}
 </div>
+
+<!-- User Field -->
+    {!! Form::hidden('household_id', $household_id) !!}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

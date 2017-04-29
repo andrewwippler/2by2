@@ -63,13 +63,16 @@ class HouseholdController extends AppBaseController
      *
      * @return Response
      */
-    public function createVisit()
+    public function createVisit($id)
     {
+
+        $household = $this->householdRepository->findWithoutFail($id);
 
         $visi = VisitType::all();
 
         return view('households.create_visit')
-            ->with('visit_type', $visi)
+            ->with('household_id', $household->id)
+            ->with('visit_type', $this->makePrettyArray($visi))
             ->with('user', Auth::id())
             ->with('today', \Carbon\Carbon::now());
     }

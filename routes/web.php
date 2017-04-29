@@ -18,7 +18,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'HouseholdController@index');
-    Route::get('/new-visit', 'HouseholdController@createVisit');
+    Route::get('/new-visit/{id}', 'HouseholdController@createVisit');
 
     Route::resource('departments', 'DepartmentController');
 
