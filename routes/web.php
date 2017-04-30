@@ -11,13 +11,11 @@
 |
 */
 
-
-
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'HouseholdController@index');
+    Route::get('/home', 'HouseholdController@index');
     Route::get('/new-visit/{id}', 'HouseholdController@createVisit');
 
     Route::resource('departments', 'DepartmentController');

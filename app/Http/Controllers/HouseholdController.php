@@ -101,11 +101,17 @@ class HouseholdController extends AppBaseController
             }
         }
 
-        $household = $this->householdRepository->create($input)->people()->saveMany($people);
+        if (count($people) > 0) {
+            $household = $this->householdRepository->create($input)->people()->saveMany($people);
 
-        Flash::success('Household saved successfully.');
+            Flash::success('Household saved successfully.');
 
-        return redirect(route('households.index'));
+            return redirect(route('households.index'));
+        } else {
+            Flash::failure('Household save failed. Person was missing.');
+
+            return redirect(route('households.index'));
+        }
 
     }
 
@@ -134,7 +140,7 @@ class HouseholdController extends AppBaseController
             ->with('household', $household)
             ->with('people', $household['relations']['people'])
             ->with('visits', $household['relations']['visits'])
-            ->with('visit_type', $visi)
+            ->with('visit_type', $this->makePrettyArray($visi))
             ->with('department', $this->makePrettyArray($dept))
             ->with('relationship', $this->makePrettyArray($rela))
             ->with('user', Auth::id());

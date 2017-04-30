@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\VisitType;
+use App\Models\Household;
 
 class VisitController extends AppBaseController
 {
@@ -33,6 +34,8 @@ class VisitController extends AppBaseController
         $this->visitRepository->pushCriteria(new RequestCriteria($request));
         $visits = $this->visitRepository->all();
 
+        \Debugbar::info($visits);
+
         $visit_types = VisitType::all();
 
         return view('visits.index')
@@ -49,12 +52,8 @@ class VisitController extends AppBaseController
     {
         $visit_types = VisitType::all();
 
-        for ($i=0; $i < count($visit_types); $i++) {
-            $visit_types_array[$i] = $visit_types[$i]->name;
-        }
-
         return view('visits.create')
-            ->with('visit_type', $visit_types_array);
+            ->with('visit_type', $this->makePrettyArray($visit_types));
     }
 
     /**
@@ -67,12 +66,14 @@ class VisitController extends AppBaseController
     public function store(CreateVisitRequest $request)
     {
         $input = $request->all();
+        $household = Household::find($input['household_id']);
 
         $visit = $this->visitRepository->create($input);
+        $visit->household()->associate($household)->save();
 
         Flash::success('Visit saved successfully.');
 
-        return redirect(route('visits.index'));
+        return redirect(route('households.show', ['id' => $input['household_id'],]));
     }
 
     /**
@@ -117,6 +118,8 @@ class VisitController extends AppBaseController
 
         return view('visits.edit')
             ->with('visit', $visit)
+            ->with('household_id', $visit->household_id)
+            ->with('today', \Carbon\Carbon::now())
             ->with('visit_type', $this->makePrettyArray($visit_types));
     }
 
@@ -135,14 +138,17 @@ class VisitController extends AppBaseController
         if (empty($visit)) {
             Flash::error('Visit not found');
 
-            return redirect(route('visits.index'));
+            return redirect(route('households.show', ['id' => $request['household_id'],]));
         }
 
+        $household = Household::find($request['household_id']);
+
         $visit = $this->visitRepository->update($request->all(), $id);
+        $visit->household()->associate($household)->save();
 
         Flash::success('Visit updated successfully.');
 
-        return redirect(route('visits.index'));
+        return redirect(route('households.show', ['id' => $request['household_id'],]));
     }
 
     /**

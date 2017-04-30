@@ -15,7 +15,7 @@ class Visit extends Model
     use SoftDeletes;
 
     public $table = 'visits';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -52,5 +52,13 @@ class Visit extends Model
     public function visitType()
     {
         return $this->hasOne(\App\Models\VisitType::class, 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function household()
+    {
+        return $this->belongsTo(\App\Models\Household::class, 'household_id');
     }
 }

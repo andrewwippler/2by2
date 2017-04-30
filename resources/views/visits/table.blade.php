@@ -3,6 +3,7 @@
         <th>Type</th>
         <th>Notes</th>
         <th>Made</th>
+        <th>Household</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
@@ -11,6 +12,7 @@
             <td>{!! $visit_type[$visit->type] !!}</td>
             <td>{!! $visit->notes !!}</td>
             <td>{!! $visit->made !!}</td>
+            <td>{!! $visit->household_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['visits.destroy', $visit->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
