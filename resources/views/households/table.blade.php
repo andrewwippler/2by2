@@ -9,7 +9,7 @@
     @foreach($households as $household)
         <tr>
             <td>@if (count($household['relations']['people']) < 2)
-                    {!! $household['relations']['people']->first_name !!}
+                    {!! $household['relations']['people'][0]->first_name !!}
                 @else
                      @foreach ($household['relations']['people'] as $person)
                          {!! $person->first_name !!},
