@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeProspectStatusTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ProspectStatusApiTest extends TestCase
 {
-    use MakeProspectStatusTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeProspectStatusTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class ProspectStatusApiTest extends TestCase
     public function testCreateProspectStatus()
     {
         $prospectStatus = $this->fakeProspectStatusData();
-        $this->json('POST', '/api/v1/prospectStatuses', $prospectStatus);
+        $response = $this->json('POST', '/api/v1/prospectstatuses', $prospectStatus);
 
-        $this->assertApiResponse($prospectStatus);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class ProspectStatusApiTest extends TestCase
     public function testReadProspectStatus()
     {
         $prospectStatus = $this->makeProspectStatus();
-        $this->json('GET', '/api/v1/prospectStatuses/'.$prospectStatus->id);
+        $response = $this->json('GET', '/api/v1/prospectstatuses/'.$prospectStatus->id);
 
-        $this->assertApiResponse($prospectStatus->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class ProspectStatusApiTest extends TestCase
         $prospectStatus = $this->makeProspectStatus();
         $editedProspectStatus = $this->fakeProspectStatusData();
 
-        $this->json('PUT', '/api/v1/prospectStatuses/'.$prospectStatus->id, $editedProspectStatus);
+        $response = $this->json('PUT', '/api/v1/prospectstatuses/'.$prospectStatus->id, $editedProspectStatus);
 
-        $this->assertApiResponse($editedProspectStatus);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class ProspectStatusApiTest extends TestCase
     public function testDeleteProspectStatus()
     {
         $prospectStatus = $this->makeProspectStatus();
-        $this->json('DELETE', '/api/v1/prospectStatuses/'.$prospectStatus->id);
+        $response = $this->json('DELETE', '/api/v1/prospectstatuses/'.$prospectStatus->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/prospectStatuses/'.$prospectStatus->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/prospectstatuses/'.$prospectStatus->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

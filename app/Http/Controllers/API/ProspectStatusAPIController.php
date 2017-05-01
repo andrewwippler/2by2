@@ -40,7 +40,7 @@ class ProspectStatusAPIController extends AppBaseController
         $this->prospectStatusRepository->pushCriteria(new LimitOffsetCriteria($request));
         $prospectStatuses = $this->prospectStatusRepository->all();
 
-        return $this->sendResponse($prospectStatuses->toArray(), 'Prospect Statuses retrieved successfully');
+        return response()->json($prospectStatuses->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class ProspectStatusAPIController extends AppBaseController
 
         $prospectStatuses = $this->prospectStatusRepository->create($input);
 
-        return $this->sendResponse($prospectStatuses->toArray(), 'Prospect Status saved successfully');
+        return response()->json($prospectStatuses->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class ProspectStatusAPIController extends AppBaseController
         $prospectStatus = $this->prospectStatusRepository->findWithoutFail($id);
 
         if (empty($prospectStatus)) {
-            return $this->sendError('Prospect Status not found');
+            return response('Prospect Status not found',404);
         }
 
-        return $this->sendResponse($prospectStatus->toArray(), 'Prospect Status retrieved successfully');
+        return response()->json($prospectStatus->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class ProspectStatusAPIController extends AppBaseController
         $prospectStatus = $this->prospectStatusRepository->findWithoutFail($id);
 
         if (empty($prospectStatus)) {
-            return $this->sendError('Prospect Status not found');
+            return response('Prospect Status not found',404);
         }
 
         $prospectStatus = $this->prospectStatusRepository->update($input, $id);
 
-        return $this->sendResponse($prospectStatus->toArray(), 'ProspectStatus updated successfully');
+        return response()->json($prospectStatus->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class ProspectStatusAPIController extends AppBaseController
         $prospectStatus = $this->prospectStatusRepository->findWithoutFail($id);
 
         if (empty($prospectStatus)) {
-            return $this->sendError('Prospect Status not found');
+            return response('Prospect Status not found',404);
         }
 
         $prospectStatus->delete();
 
-        return $this->sendResponse($id, 'Prospect Status deleted successfully');
+        return response()->json('Prospect Status deleted successfully');
     }
 }
