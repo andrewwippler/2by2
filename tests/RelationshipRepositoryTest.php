@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeRelationshipTrait;
 use App\Models\Relationship;
 use App\Repositories\RelationshipRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

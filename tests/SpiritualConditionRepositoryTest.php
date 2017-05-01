@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeSpiritualConditionTrait;
 use App\Models\SpiritualCondition;
 use App\Repositories\SpiritualConditionRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

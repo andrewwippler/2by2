@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\Department;
@@ -16,7 +16,7 @@ trait MakeDepartmentTrait
     public function makeDepartment($departmentFields = [])
     {
         /** @var DepartmentRepository $departmentRepo */
-        $departmentRepo = App::make(DepartmentRepository::class);
+        $departmentRepo = \App::make(DepartmentRepository::class);
         $theme = $this->fakeDepartmentData($departmentFields);
         return $departmentRepo->create($theme);
     }
@@ -44,9 +44,6 @@ trait MakeDepartmentTrait
 
         return array_merge([
             'name' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $departmentFields);
     }
 }

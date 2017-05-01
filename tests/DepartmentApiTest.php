@@ -1,13 +1,14 @@
 <?php
 
-namespace Tests;
-
+use Tests\TestCase;
+use Tests\Traits\MakeDepartmentTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DepartmentApiTest extends TestCase
 {
-    use MakeDepartmentTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeDepartmentTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -15,9 +16,9 @@ class DepartmentApiTest extends TestCase
     public function testCreateDepartment()
     {
         $department = $this->fakeDepartmentData();
-        $this->json('POST', '/api/v1/departments', $department);
+        $response = $this->json('POST', '/api/v1/departments', $department);
 
-        $this->assertApiResponse($department);
+        $response->assertStatus(200);
     }
 
     /**
@@ -26,9 +27,9 @@ class DepartmentApiTest extends TestCase
     public function testReadDepartment()
     {
         $department = $this->makeDepartment();
-        $this->json('GET', '/api/v1/departments/'.$department->id);
+        $response = $this->json('GET', '/api/v1/departments/'.$department->id);
 
-        $this->assertApiResponse($department->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -39,9 +40,9 @@ class DepartmentApiTest extends TestCase
         $department = $this->makeDepartment();
         $editedDepartment = $this->fakeDepartmentData();
 
-        $this->json('PUT', '/api/v1/departments/'.$department->id, $editedDepartment);
+        $response = $this->json('PUT', '/api/v1/departments/'.$department->id, $editedDepartment);
 
-        $this->assertApiResponse($editedDepartment);
+        $response->assertStatus(200);
     }
 
     /**
@@ -50,11 +51,11 @@ class DepartmentApiTest extends TestCase
     public function testDeleteDepartment()
     {
         $department = $this->makeDepartment();
-        $this->json('DELETE', '/api/v1/departments/'.$department->id);
+        $response = $this->json('DELETE', '/api/v1/departments/'.$department->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/departments/'.$department->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/departments/'.$department->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

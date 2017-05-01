@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests;
-
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeDepartmentTrait;
 use App\Models\Department;
 use App\Repositories\DepartmentRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

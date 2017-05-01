@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakePersonTrait;
 use App\Models\Person;
 use App\Repositories\PersonRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeProspectStatusTrait;
 use App\Models\ProspectStatus;
 use App\Repositories\ProspectStatusRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

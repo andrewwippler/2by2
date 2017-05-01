@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\Visit;
@@ -16,7 +16,7 @@ trait MakeVisitTrait
     public function makeVisit($visitFields = [])
     {
         /** @var VisitRepository $visitRepo */
-        $visitRepo = App::make(VisitRepository::class);
+        $visitRepo = \App::make(VisitRepository::class);
         $theme = $this->fakeVisitData($visitFields);
         return $visitRepo->create($theme);
     }
@@ -46,9 +46,6 @@ trait MakeVisitTrait
             'type' => $fake->randomDigitNotNull,
             'notes' => $fake->text,
             'made' => $fake->date('Y-m-d H:i:s'),
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $visitFields);
     }
 }

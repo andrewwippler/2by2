@@ -40,7 +40,7 @@ class DepartmentAPIController extends AppBaseController
         $this->departmentRepository->pushCriteria(new LimitOffsetCriteria($request));
         $departments = $this->departmentRepository->all();
 
-        return $this->sendResponse($departments->toArray(), 'Departments retrieved successfully');
+        return response()->json($departments->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class DepartmentAPIController extends AppBaseController
 
         $departments = $this->departmentRepository->create($input);
 
-        return $this->sendResponse($departments->toArray(), 'Department saved successfully');
+        return response()->json($departments->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class DepartmentAPIController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            return $this->sendError('Department not found');
+            return response("Department not found", 404);
         }
 
-        return $this->sendResponse($department->toArray(), 'Department retrieved successfully');
+        return response()->json($department->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class DepartmentAPIController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            return $this->sendError('Department not found');
+            return response("Department not found", 404);
         }
 
         $department = $this->departmentRepository->update($input, $id);
 
-        return $this->sendResponse($department->toArray(), 'Department updated successfully');
+        return response()->json($department->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class DepartmentAPIController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            return $this->sendError('Department not found');
+            return response("Department not deleted successfully", 500);
         }
 
         $department->delete();
 
-        return $this->sendResponse($id, 'Department deleted successfully');
+        return response("Department deleted successfully", 200);
     }
 }

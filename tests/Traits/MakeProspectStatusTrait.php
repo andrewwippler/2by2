@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\ProspectStatus;
@@ -16,7 +16,7 @@ trait MakeProspectStatusTrait
     public function makeProspectStatus($prospectStatusFields = [])
     {
         /** @var ProspectStatusRepository $prospectStatusRepo */
-        $prospectStatusRepo = App::make(ProspectStatusRepository::class);
+        $prospectStatusRepo = \App::make(ProspectStatusRepository::class);
         $theme = $this->fakeProspectStatusData($prospectStatusFields);
         return $prospectStatusRepo->create($theme);
     }
@@ -44,9 +44,6 @@ trait MakeProspectStatusTrait
 
         return array_merge([
             'name' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $prospectStatusFields);
     }
 }

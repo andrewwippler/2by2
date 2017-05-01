@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeVisitTrait;
 use App\Models\Visit;
 use App\Repositories\VisitRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

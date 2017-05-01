@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeMaritalStatusTrait;
 use App\Models\MaritalStatus;
 use App\Repositories\MaritalStatusRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

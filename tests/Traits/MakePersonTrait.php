@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\Person;
@@ -16,7 +16,7 @@ trait MakePersonTrait
     public function makePerson($personFields = [])
     {
         /** @var PersonRepository $personRepo */
-        $personRepo = App::make(PersonRepository::class);
+        $personRepo = \App::make(PersonRepository::class);
         $theme = $this->fakePersonData($personFields);
         return $personRepo->create($theme);
     }
@@ -53,9 +53,6 @@ trait MakePersonTrait
             'notes' => $fake->text,
             'marital_status' => $fake->randomDigitNotNull,
             'relationship' => $fake->randomDigitNotNull,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $personFields);
     }
 }

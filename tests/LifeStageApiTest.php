@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests;
-
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeLifeStageTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 

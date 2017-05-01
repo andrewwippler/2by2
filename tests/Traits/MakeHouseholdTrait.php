@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\Household;
@@ -16,7 +16,7 @@ trait MakeHouseholdTrait
     public function makeHousehold($householdFields = [])
     {
         /** @var HouseholdRepository $householdRepo */
-        $householdRepo = App::make(HouseholdRepository::class);
+        $householdRepo = \App::make(HouseholdRepository::class);
         $theme = $this->fakeHouseholdData($householdFields);
         return $householdRepo->create($theme);
     }
@@ -44,7 +44,18 @@ trait MakeHouseholdTrait
 
         return array_merge([
             'last_name' => $fake->word,
-            'people' => $fake->randomDigitNotNull,
+            'people' => [[
+                'first_name' => $fake->word,
+                'middle_name' => $fake->word,
+                'phone_number' => $fake->word,
+                'LifeStage' => $fake->randomDigitNotNull,
+                'email' => $fake->word,
+                'spiritual_condition' => $fake->randomDigitNotNull,
+                'prospect_status' => $fake->randomDigitNotNull,
+                'notes' => $fake->text,
+                'marital_status' => $fake->randomDigitNotNull,
+                'relationship' => $fake->randomDigitNotNull,
+                ],],
             'home_phone' => $fake->word,
             'department' => $fake->randomDigitNotNull,
             'connected' => $fake->word,
@@ -60,9 +71,6 @@ trait MakeHouseholdTrait
             'zip' => $fake->randomDigitNotNull,
             'user' => $fake->randomDigitNotNull,
             'visits' => $fake->randomDigitNotNull,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $householdFields);
     }
 }

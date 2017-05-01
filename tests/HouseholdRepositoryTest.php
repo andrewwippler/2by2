@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests;
-
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeHouseholdTrait;
 use App\Models\Household;
 use App\Repositories\HouseholdRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

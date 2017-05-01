@@ -1,6 +1,8 @@
 <?php
-namespace Tests;
 
+use Tests\TestCase;
+use Tests\ApiTestTrait;
+use Tests\Traits\MakeLifeStageTrait;
 use App\Models\LifeStage;
 use App\Repositories\LifeStageRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

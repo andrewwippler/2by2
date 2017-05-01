@@ -37,7 +37,7 @@
       "classmap": [
         "tests/TestCase.php",
         "tests/ApiTestTrait.php",
-        "tests/traits"
+        "tests/Traits"
       ],
         "psr-4": {
             "Tests\\": "tests/"

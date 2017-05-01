@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\LifeStage;
@@ -16,7 +16,7 @@ trait MakeLifeStageTrait
     public function makeLifeStage($lifeStageFields = [])
     {
         /** @var LifeStageRepository $lifeStageRepo */
-        $lifeStageRepo = App::make(LifeStageRepository::class);
+        $lifeStageRepo = \App::make(LifeStageRepository::class);
         $theme = $this->fakeLifeStageData($lifeStageFields);
         return $lifeStageRepo->create($theme);
     }
@@ -44,9 +44,6 @@ trait MakeLifeStageTrait
 
         return array_merge([
             'name' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $lifeStageFields);
     }
 }

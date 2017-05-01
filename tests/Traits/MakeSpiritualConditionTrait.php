@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\SpiritualCondition;
@@ -16,7 +16,7 @@ trait MakeSpiritualConditionTrait
     public function makeSpiritualCondition($spiritualConditionFields = [])
     {
         /** @var SpiritualConditionRepository $spiritualConditionRepo */
-        $spiritualConditionRepo = App::make(SpiritualConditionRepository::class);
+        $spiritualConditionRepo = \App::make(SpiritualConditionRepository::class);
         $theme = $this->fakeSpiritualConditionData($spiritualConditionFields);
         return $spiritualConditionRepo->create($theme);
     }
@@ -44,9 +44,6 @@ trait MakeSpiritualConditionTrait
 
         return array_merge([
             'name' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $spiritualConditionFields);
     }
 }

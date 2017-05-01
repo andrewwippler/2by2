@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Traits;
 
 use Faker\Factory as Faker;
 use App\Models\Relationship;
@@ -16,7 +16,7 @@ trait MakeRelationshipTrait
     public function makeRelationship($relationshipFields = [])
     {
         /** @var RelationshipRepository $relationshipRepo */
-        $relationshipRepo = App::make(RelationshipRepository::class);
+        $relationshipRepo = \App::make(RelationshipRepository::class);
         $theme = $this->fakeRelationshipData($relationshipFields);
         return $relationshipRepo->create($theme);
     }
@@ -44,9 +44,6 @@ trait MakeRelationshipTrait
 
         return array_merge([
             'name' => $fake->word,
-            'created_at' => $fake->date('Y-m-d H:i:s'),
-            'updated_at' => $fake->date('Y-m-d H:i:s'),
-            'deleted_at' => $fake->date('Y-m-d H:i:s')
         ], $relationshipFields);
     }
 }

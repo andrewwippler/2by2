@@ -40,7 +40,7 @@ class HouseholdAPIController extends AppBaseController
         $this->householdRepository->pushCriteria(new LimitOffsetCriteria($request));
         $households = $this->householdRepository->all();
 
-        return $this->sendResponse($households->toArray(), 'Households retrieved successfully');
+        return response()->json($households->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class HouseholdAPIController extends AppBaseController
 
         $households = $this->householdRepository->create($input);
 
-        return $this->sendResponse($households->toArray(), 'Household saved successfully');
+        return response()->json($households->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class HouseholdAPIController extends AppBaseController
         $household = $this->householdRepository->findWithoutFail($id);
 
         if (empty($household)) {
-            return $this->sendError('Household not found');
+            return response('Household not found',404);
         }
 
-        return $this->sendResponse($household->toArray(), 'Household retrieved successfully');
+        return response()->json($household->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class HouseholdAPIController extends AppBaseController
         $household = $this->householdRepository->findWithoutFail($id);
 
         if (empty($household)) {
-            return $this->sendError('Household not found');
+            return response('Household not found',404);
         }
 
         $household = $this->householdRepository->update($input, $id);
 
-        return $this->sendResponse($household->toArray(), 'Household updated successfully');
+        return response()->json($household->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class HouseholdAPIController extends AppBaseController
         $household = $this->householdRepository->findWithoutFail($id);
 
         if (empty($household)) {
-            return $this->sendError('Household not found');
+            return response('Household not found',404);
         }
 
         $household->delete();
 
-        return $this->sendResponse($id, 'Household deleted successfully');
+        return response("Household deleted successfully", 200);
     }
 }
