@@ -40,7 +40,7 @@ class MaritalStatusAPIController extends AppBaseController
         $this->maritalStatusRepository->pushCriteria(new LimitOffsetCriteria($request));
         $maritalStatuses = $this->maritalStatusRepository->all();
 
-        return $this->sendResponse($maritalStatuses->toArray(), 'Marital Statuses retrieved successfully');
+        return response()->json($maritalStatuses->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class MaritalStatusAPIController extends AppBaseController
 
         $maritalStatuses = $this->maritalStatusRepository->create($input);
 
-        return $this->sendResponse($maritalStatuses->toArray(), 'Marital Status saved successfully');
+        return response()->json($maritalStatuses->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class MaritalStatusAPIController extends AppBaseController
         $maritalStatus = $this->maritalStatusRepository->findWithoutFail($id);
 
         if (empty($maritalStatus)) {
-            return $this->sendError('Marital Status not found');
+            return response('Marital Status not found',404);
         }
 
-        return $this->sendResponse($maritalStatus->toArray(), 'Marital Status retrieved successfully');
+        return response()->json($maritalStatus->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class MaritalStatusAPIController extends AppBaseController
         $maritalStatus = $this->maritalStatusRepository->findWithoutFail($id);
 
         if (empty($maritalStatus)) {
-            return $this->sendError('Marital Status not found');
+            return response('Marital Status not found',404);
         }
 
         $maritalStatus = $this->maritalStatusRepository->update($input, $id);
 
-        return $this->sendResponse($maritalStatus->toArray(), 'MaritalStatus updated successfully');
+        return response()->json($maritalStatus->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class MaritalStatusAPIController extends AppBaseController
         $maritalStatus = $this->maritalStatusRepository->findWithoutFail($id);
 
         if (empty($maritalStatus)) {
-            return $this->sendError('Marital Status not found');
+            return response('Marital Status not found',404);
         }
 
         $maritalStatus->delete();
 
-        return $this->sendResponse($id, 'Marital Status deleted successfully');
+        return response()->json('Marital Status deleted successfully');
     }
 }

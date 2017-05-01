@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeMaritalStatusTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class MaritalStatusApiTest extends TestCase
 {
-    use MakeMaritalStatusTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeMaritalStatusTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class MaritalStatusApiTest extends TestCase
     public function testCreateMaritalStatus()
     {
         $maritalStatus = $this->fakeMaritalStatusData();
-        $this->json('POST', '/api/v1/maritalStatuses', $maritalStatus);
+        $response = $this->json('POST', '/api/v1/maritalstatuses', $maritalStatus);
 
-        $this->assertApiResponse($maritalStatus);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class MaritalStatusApiTest extends TestCase
     public function testReadMaritalStatus()
     {
         $maritalStatus = $this->makeMaritalStatus();
-        $this->json('GET', '/api/v1/maritalStatuses/'.$maritalStatus->id);
+        $response = $this->json('GET', '/api/v1/maritalstatuses/'.$maritalStatus->id);
 
-        $this->assertApiResponse($maritalStatus->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class MaritalStatusApiTest extends TestCase
         $maritalStatus = $this->makeMaritalStatus();
         $editedMaritalStatus = $this->fakeMaritalStatusData();
 
-        $this->json('PUT', '/api/v1/maritalStatuses/'.$maritalStatus->id, $editedMaritalStatus);
+        $response = $this->json('PUT', '/api/v1/maritalstatuses/'.$maritalStatus->id, $editedMaritalStatus);
 
-        $this->assertApiResponse($editedMaritalStatus);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class MaritalStatusApiTest extends TestCase
     public function testDeleteMaritalStatus()
     {
         $maritalStatus = $this->makeMaritalStatus();
-        $this->json('DELETE', '/api/v1/maritalStatuses/'.$maritalStatus->id);
+        $response = $this->json('DELETE', '/api/v1/maritalstatuses/'.$maritalStatus->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/maritalStatuses/'.$maritalStatus->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/maritalstatuses/'.$maritalStatus->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }
