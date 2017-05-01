@@ -10,7 +10,7 @@
             <a href="mailto:{!! $person->email !!}" class='btn btn-default btn-lg'><i class="fa fa-envelope"></i></a>
             @endif
             @if ($person->phone_number)
-            <a href="mailto:{!! $person->phone_number !!}" class='btn btn-default btn-lg'><i class="fa fa-phone"></i></a>
+            <a href="{!! phone($person->phone_number, 'US', 3) !!}" class='btn btn-default btn-lg'><i class="fa fa-phone"></i></a>
             @endif
         </div>
     @endforeach

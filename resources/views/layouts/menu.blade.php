@@ -48,12 +48,12 @@
         <a href="{!! route('visitTypes.index') !!}"><i class="fa fa-envelope"></i><span>VisitTypes</span></a>
     </li>
 
-    <li class="{{ Request::is('visits*') ? 'active' : '' }}">
+    {{-- <li class="{{ Request::is('visits*') ? 'active' : '' }}">
         <a href="{!! route('visits.index') !!}"><i class="fa fa-comments-o"></i><span>Visits</span></a>
     </li>
 
     <li class="{{ Request::is('people*') ? 'active' : '' }}">
         <a href="{!! route('people.index') !!}"><i class="fa fa-users"></i><span>People</span></a>
-    </li>
+    </li> --}}
   </ul>
 </li>

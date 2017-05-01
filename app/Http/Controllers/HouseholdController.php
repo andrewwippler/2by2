@@ -15,6 +15,7 @@ use App\Models\Relationship;
 use App\Models\Person;
 use App\Models\VisitType;
 use Illuminate\Support\Facades\Auth;
+use libphonenumber;
 
 class HouseholdController extends AppBaseController
 {
@@ -35,7 +36,9 @@ class HouseholdController extends AppBaseController
     public function index(Request $request)
     {
         $this->householdRepository->pushCriteria(new RequestCriteria($request));
-        $households = $this->householdRepository->all();
+        $households = $this->householdRepository->all()->load('people','visits');
+
+\Debugbar::info($households[0]['relations']['people']);
 
         return view('households.index')
             ->with('households', $households);
@@ -226,7 +229,7 @@ class HouseholdController extends AppBaseController
      */
     public function destroy($id)
     {
-        $household = $this->householdRepository->findWithoutFail($id);
+        $household = $this->householdRepository->findWithoutFail($id)->load('people', 'visits');
 
         if (empty($household)) {
             Flash::error('Household not found');

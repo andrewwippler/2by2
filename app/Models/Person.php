@@ -106,6 +106,6 @@ class Person extends Model
      **/
     public function household()
     {
-        return $this->belongsTo(\App\Models\Household::class, 'id');
+        return $this->belongsTo(\App\Models\Household::class, 'household_id');
     }
 }

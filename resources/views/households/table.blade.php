@@ -1,15 +1,22 @@
 <table class="table table-responsive" id="households-table">
     <thead>
+        <th>First Names</th>
         <th>Last Name</th>
-        <th>People</th>
         <th>Plan To Visit</th>
         <th colspan="3"></th>
     </thead>
     <tbody>
     @foreach($households as $household)
         <tr>
+            <td>@if (count($household['relations']['people']) < 2)
+                    {!! $household['relations']['people']->first_name !!}
+                @else
+                     @foreach ($household['relations']['people'] as $person)
+                         {!! $person->first_name !!},
+                     @endforeach
+                @endif
+            </td>
             <td>{!! $household->last_name !!}</td>
-            <td>{!! $household->people !!}</td>
             <td>{!! $household->plan_to_visit !!}</td>
 
             <td>

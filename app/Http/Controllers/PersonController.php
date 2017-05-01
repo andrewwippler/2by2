@@ -154,9 +154,11 @@ class PersonController extends AppBaseController
 
         $person = $this->personRepository->update($request->all(), $id);
 
-        Flash::success('Person updated successfully.');
+        Flash::success($person->first_name .' updated successfully.');
 
-        return redirect(route('people.index'));
+        $house = $person->household;
+
+        return redirect(route('households.show', ['id' => $house->id,]));
     }
 
     /**

@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+
+$app->register(Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application
