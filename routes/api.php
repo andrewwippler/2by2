@@ -19,15 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('departments', 'DepartmentAPIController');
 
-Route::resource('life_stages', 'LifeStageAPIController');
+Route::resource('lifestages', 'LifeStageAPIController');
 
-Route::resource('marital_statuses', 'MaritalStatusAPIController');
+Route::resource('maritalstatuses', 'MaritalStatusAPIController');
 
-Route::resource('prospect_statuses', 'ProspectStatusAPIController');
+Route::resource('prospectstatuses', 'ProspectStatusAPIController');
 
 Route::resource('relationships', 'RelationshipAPIController');
 
-Route::resource('spiritual_conditions', 'SpiritualConditionAPIController');
+Route::resource('spiritualconditions', 'SpiritualConditionAPIController');
 
 Route::resource('visit_types', 'VisitTypeAPIController');
 

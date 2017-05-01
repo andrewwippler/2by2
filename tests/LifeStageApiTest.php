@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeLifeStageTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class LifeStageApiTest extends TestCase
 {
-    use MakeLifeStageTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeLifeStageTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class LifeStageApiTest extends TestCase
     public function testCreateLifeStage()
     {
         $lifeStage = $this->fakeLifeStageData();
-        $this->json('POST', '/api/v1/lifeStages', $lifeStage);
+        $response = $this->json('POST', '/api/v1/lifestages', $lifeStage);
 
-        $this->assertApiResponse($lifeStage);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class LifeStageApiTest extends TestCase
     public function testReadLifeStage()
     {
         $lifeStage = $this->makeLifeStage();
-        $this->json('GET', '/api/v1/lifeStages/'.$lifeStage->id);
+        $response = $this->json('GET', '/api/v1/lifestages/'.$lifeStage->id);
 
-        $this->assertApiResponse($lifeStage->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class LifeStageApiTest extends TestCase
         $lifeStage = $this->makeLifeStage();
         $editedLifeStage = $this->fakeLifeStageData();
 
-        $this->json('PUT', '/api/v1/lifeStages/'.$lifeStage->id, $editedLifeStage);
+        $response = $this->json('PUT', '/api/v1/lifestages/'.$lifeStage->id, $editedLifeStage);
 
-        $this->assertApiResponse($editedLifeStage);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class LifeStageApiTest extends TestCase
     public function testDeleteLifeStage()
     {
         $lifeStage = $this->makeLifeStage();
-        $this->json('DELETE', '/api/v1/lifeStages/'.$lifeStage->id);
+        $response = $this->json('DELETE', '/api/v1/lifestages/'.$lifeStage->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/lifeStages/'.$lifeStage->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/lifestages/'.$lifeStage->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

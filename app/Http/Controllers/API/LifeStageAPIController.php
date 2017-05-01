@@ -40,7 +40,7 @@ class LifeStageAPIController extends AppBaseController
         $this->lifeStageRepository->pushCriteria(new LimitOffsetCriteria($request));
         $lifeStages = $this->lifeStageRepository->all();
 
-        return $this->sendResponse($lifeStages->toArray(), 'Life Stages retrieved successfully');
+        return response()->json($lifeStages->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class LifeStageAPIController extends AppBaseController
 
         $lifeStages = $this->lifeStageRepository->create($input);
 
-        return $this->sendResponse($lifeStages->toArray(), 'Life Stage saved successfully');
+        return response()->json($lifeStages->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class LifeStageAPIController extends AppBaseController
         $lifeStage = $this->lifeStageRepository->findWithoutFail($id);
 
         if (empty($lifeStage)) {
-            return $this->sendError('Life Stage not found');
+            return response('Life Stage not found', 404);
         }
 
-        return $this->sendResponse($lifeStage->toArray(), 'Life Stage retrieved successfully');
+        return response()->json($lifeStage->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class LifeStageAPIController extends AppBaseController
         $lifeStage = $this->lifeStageRepository->findWithoutFail($id);
 
         if (empty($lifeStage)) {
-            return $this->sendError('Life Stage not found');
+            return response('Life Stage not found', 404);
         }
 
         $lifeStage = $this->lifeStageRepository->update($input, $id);
 
-        return $this->sendResponse($lifeStage->toArray(), 'LifeStage updated successfully');
+        return response()->json($lifeStage->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class LifeStageAPIController extends AppBaseController
         $lifeStage = $this->lifeStageRepository->findWithoutFail($id);
 
         if (empty($lifeStage)) {
-            return $this->sendError('Life Stage not found');
+            return response('Life Stage not found',404);
         }
 
         $lifeStage->delete();
 
-        return $this->sendResponse($id, 'Life Stage deleted successfully');
+        return response()->json('Life Stage deleted successfully');
     }
 }
