@@ -1,5 +1,5 @@
 # 2 by 2
-
+[![Build Status](https://travis-ci.org/andrewwippler/2by2.svg?branch=master)](https://travis-ci.org/andrewwippler/2by2)
 A work in progress.... please ignore the dust.
 
 ## setup
