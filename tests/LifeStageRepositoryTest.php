@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\LifeStage;
 use App\Repositories\LifeStageRepository;

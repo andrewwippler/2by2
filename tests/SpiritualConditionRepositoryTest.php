@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\SpiritualCondition;
 use App\Repositories\SpiritualConditionRepository;

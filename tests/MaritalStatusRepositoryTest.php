@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\MaritalStatus;
 use App\Repositories\MaritalStatusRepository;

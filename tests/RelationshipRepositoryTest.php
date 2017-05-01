@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\Relationship;
 use App\Repositories\RelationshipRepository;

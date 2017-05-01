@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\ProspectStatus;
 use App\Repositories\ProspectStatusRepository;

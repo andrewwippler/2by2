@@ -34,6 +34,11 @@
         }
     },
     "autoload-dev": {
+      "classmap": [
+        "tests/TestCase.php",
+        "tests/ApiTestTrait.php",
+        "tests/traits"
+      ],
         "psr-4": {
             "Tests\\": "tests/"
         }

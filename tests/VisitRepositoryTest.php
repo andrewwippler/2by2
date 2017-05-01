@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use App\Models\Visit;
 use App\Repositories\VisitRepository;
