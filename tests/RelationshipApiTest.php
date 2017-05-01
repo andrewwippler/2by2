@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeRelationshipTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RelationshipApiTest extends TestCase
 {
-    use MakeRelationshipTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeRelationshipTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class RelationshipApiTest extends TestCase
     public function testCreateRelationship()
     {
         $relationship = $this->fakeRelationshipData();
-        $this->json('POST', '/api/v1/relationships', $relationship);
+        $response = $this->json('POST', '/api/v1/relationships', $relationship);
 
-        $this->assertApiResponse($relationship);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class RelationshipApiTest extends TestCase
     public function testReadRelationship()
     {
         $relationship = $this->makeRelationship();
-        $this->json('GET', '/api/v1/relationships/'.$relationship->id);
+        $response = $this->json('GET', '/api/v1/relationships/'.$relationship->id);
 
-        $this->assertApiResponse($relationship->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class RelationshipApiTest extends TestCase
         $relationship = $this->makeRelationship();
         $editedRelationship = $this->fakeRelationshipData();
 
-        $this->json('PUT', '/api/v1/relationships/'.$relationship->id, $editedRelationship);
+        $response = $this->json('PUT', '/api/v1/relationships/'.$relationship->id, $editedRelationship);
 
-        $this->assertApiResponse($editedRelationship);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class RelationshipApiTest extends TestCase
     public function testDeleteRelationship()
     {
         $relationship = $this->makeRelationship();
-        $this->json('DELETE', '/api/v1/relationships/'.$relationship->id);
+        $response = $this->json('DELETE', '/api/v1/relationships/'.$relationship->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/relationships/'.$relationship->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/relationships/'.$relationship->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

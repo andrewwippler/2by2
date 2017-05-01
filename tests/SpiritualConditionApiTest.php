@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeSpiritualConditionTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SpiritualConditionApiTest extends TestCase
 {
-    use MakeSpiritualConditionTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeSpiritualConditionTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class SpiritualConditionApiTest extends TestCase
     public function testCreateSpiritualCondition()
     {
         $spiritualCondition = $this->fakeSpiritualConditionData();
-        $this->json('POST', '/api/v1/spiritualConditions', $spiritualCondition);
+        $response = $this->json('POST', '/api/v1/spiritualconditions', $spiritualCondition);
 
-        $this->assertApiResponse($spiritualCondition);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class SpiritualConditionApiTest extends TestCase
     public function testReadSpiritualCondition()
     {
         $spiritualCondition = $this->makeSpiritualCondition();
-        $this->json('GET', '/api/v1/spiritualConditions/'.$spiritualCondition->id);
+        $response = $this->json('GET', '/api/v1/spiritualconditions/'.$spiritualCondition->id);
 
-        $this->assertApiResponse($spiritualCondition->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class SpiritualConditionApiTest extends TestCase
         $spiritualCondition = $this->makeSpiritualCondition();
         $editedSpiritualCondition = $this->fakeSpiritualConditionData();
 
-        $this->json('PUT', '/api/v1/spiritualConditions/'.$spiritualCondition->id, $editedSpiritualCondition);
+        $response = $this->json('PUT', '/api/v1/spiritualconditions/'.$spiritualCondition->id, $editedSpiritualCondition);
 
-        $this->assertApiResponse($editedSpiritualCondition);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class SpiritualConditionApiTest extends TestCase
     public function testDeleteSpiritualCondition()
     {
         $spiritualCondition = $this->makeSpiritualCondition();
-        $this->json('DELETE', '/api/v1/spiritualConditions/'.$spiritualCondition->id);
+        $response = $this->json('DELETE', '/api/v1/spiritualconditions/'.$spiritualCondition->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/spiritualConditions/'.$spiritualCondition->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/spiritualconditions/'.$spiritualCondition->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

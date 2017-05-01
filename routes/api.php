@@ -29,7 +29,7 @@ Route::resource('relationships', 'RelationshipAPIController');
 
 Route::resource('spiritualconditions', 'SpiritualConditionAPIController');
 
-Route::resource('visit_types', 'VisitTypeAPIController');
+Route::resource('visittypes', 'VisitTypeAPIController');
 
 Route::resource('visits', 'VisitAPIController');
 

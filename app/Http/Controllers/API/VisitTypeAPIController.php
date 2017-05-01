@@ -40,7 +40,7 @@ class VisitTypeAPIController extends AppBaseController
         $this->visitTypeRepository->pushCriteria(new LimitOffsetCriteria($request));
         $visitTypes = $this->visitTypeRepository->all();
 
-        return $this->sendResponse($visitTypes->toArray(), 'Visit Types retrieved successfully');
+        return response()->json($visitTypes->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class VisitTypeAPIController extends AppBaseController
 
         $visitTypes = $this->visitTypeRepository->create($input);
 
-        return $this->sendResponse($visitTypes->toArray(), 'Visit Type saved successfully');
+        return response()->json($visitTypes->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class VisitTypeAPIController extends AppBaseController
         $visitType = $this->visitTypeRepository->findWithoutFail($id);
 
         if (empty($visitType)) {
-            return $this->sendError('Visit Type not found');
+            return response('Visit Type not found',404);
         }
 
-        return $this->sendResponse($visitType->toArray(), 'Visit Type retrieved successfully');
+        return response()->json($visitType->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class VisitTypeAPIController extends AppBaseController
         $visitType = $this->visitTypeRepository->findWithoutFail($id);
 
         if (empty($visitType)) {
-            return $this->sendError('Visit Type not found');
+            return response('Visit Type not found',404);
         }
 
         $visitType = $this->visitTypeRepository->update($input, $id);
 
-        return $this->sendResponse($visitType->toArray(), 'VisitType updated successfully');
+        return response()->json($visitType->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class VisitTypeAPIController extends AppBaseController
         $visitType = $this->visitTypeRepository->findWithoutFail($id);
 
         if (empty($visitType)) {
-            return $this->sendError('Visit Type not found');
+            return response('Visit Type not found',404);
         }
 
         $visitType->delete();
 
-        return $this->sendResponse($id, 'Visit Type deleted successfully');
+        return response()->json('Visit Type deleted successfully');
     }
 }

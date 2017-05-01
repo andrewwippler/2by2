@@ -40,7 +40,7 @@ class RelationshipAPIController extends AppBaseController
         $this->relationshipRepository->pushCriteria(new LimitOffsetCriteria($request));
         $relationships = $this->relationshipRepository->all();
 
-        return $this->sendResponse($relationships->toArray(), 'Relationships retrieved successfully');
+        return response()->json($relationships->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class RelationshipAPIController extends AppBaseController
 
         $relationships = $this->relationshipRepository->create($input);
 
-        return $this->sendResponse($relationships->toArray(), 'Relationship saved successfully');
+        return response()->json($relationships->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class RelationshipAPIController extends AppBaseController
         $relationship = $this->relationshipRepository->findWithoutFail($id);
 
         if (empty($relationship)) {
-            return $this->sendError('Relationship not found');
+            return response('Relationship not found', 404);
         }
 
-        return $this->sendResponse($relationship->toArray(), 'Relationship retrieved successfully');
+        return response()->json($relationship->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class RelationshipAPIController extends AppBaseController
         $relationship = $this->relationshipRepository->findWithoutFail($id);
 
         if (empty($relationship)) {
-            return $this->sendError('Relationship not found');
+            return response('Relationship not found', 404);
         }
 
         $relationship = $this->relationshipRepository->update($input, $id);
 
-        return $this->sendResponse($relationship->toArray(), 'Relationship updated successfully');
+        return response()->json($relationship->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class RelationshipAPIController extends AppBaseController
         $relationship = $this->relationshipRepository->findWithoutFail($id);
 
         if (empty($relationship)) {
-            return $this->sendError('Relationship not found');
+            return response('Relationship not found', 404);
         }
 
         $relationship->delete();
 
-        return $this->sendResponse($id, 'Relationship deleted successfully');
+        return response()->json('Relationship deleted successfully');
     }
 }

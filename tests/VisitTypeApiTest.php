@@ -1,14 +1,13 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
 use Tests\Traits\MakeVisitTypeTrait;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VisitTypeApiTest extends TestCase
 {
-    use MakeVisitTypeTrait, ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
+    use MakeVisitTypeTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @test
@@ -16,9 +15,9 @@ class VisitTypeApiTest extends TestCase
     public function testCreateVisitType()
     {
         $visitType = $this->fakeVisitTypeData();
-        $this->json('POST', '/api/v1/visitTypes', $visitType);
+        $response = $this->json('POST', '/api/v1/visittypes', $visitType);
 
-        $this->assertApiResponse($visitType);
+        $response->assertStatus(200);
     }
 
     /**
@@ -27,9 +26,9 @@ class VisitTypeApiTest extends TestCase
     public function testReadVisitType()
     {
         $visitType = $this->makeVisitType();
-        $this->json('GET', '/api/v1/visitTypes/'.$visitType->id);
+        $response = $this->json('GET', '/api/v1/visittypes/'.$visitType->id);
 
-        $this->assertApiResponse($visitType->toArray());
+        $response->assertStatus(200);
     }
 
     /**
@@ -40,9 +39,9 @@ class VisitTypeApiTest extends TestCase
         $visitType = $this->makeVisitType();
         $editedVisitType = $this->fakeVisitTypeData();
 
-        $this->json('PUT', '/api/v1/visitTypes/'.$visitType->id, $editedVisitType);
+        $response = $this->json('PUT', '/api/v1/visittypes/'.$visitType->id, $editedVisitType);
 
-        $this->assertApiResponse($editedVisitType);
+        $response->assertStatus(200);
     }
 
     /**
@@ -51,11 +50,11 @@ class VisitTypeApiTest extends TestCase
     public function testDeleteVisitType()
     {
         $visitType = $this->makeVisitType();
-        $this->json('DELETE', '/api/v1/visitTypes/'.$visitType->id);
+        $response = $this->json('DELETE', '/api/v1/visittypes/'.$visitType->id);
 
-        $this->assertApiSuccess();
-        $this->json('GET', '/api/v1/visitTypes/'.$visitType->id);
+        $response->assertStatus(200);
+        $response = $this->json('GET', '/api/v1/visittypes/'.$visitType->id);
 
-        $this->assertResponseStatus(404);
+        $response->assertStatus(404);
     }
 }

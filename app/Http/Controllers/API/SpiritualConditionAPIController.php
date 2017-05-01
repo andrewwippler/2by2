@@ -40,7 +40,7 @@ class SpiritualConditionAPIController extends AppBaseController
         $this->spiritualConditionRepository->pushCriteria(new LimitOffsetCriteria($request));
         $spiritualConditions = $this->spiritualConditionRepository->all();
 
-        return $this->sendResponse($spiritualConditions->toArray(), 'Spiritual Conditions retrieved successfully');
+        return response()->json($spiritualConditions->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class SpiritualConditionAPIController extends AppBaseController
 
         $spiritualConditions = $this->spiritualConditionRepository->create($input);
 
-        return $this->sendResponse($spiritualConditions->toArray(), 'Spiritual Condition saved successfully');
+        return response()->json($spiritualConditions->toArray());
     }
 
     /**
@@ -74,10 +74,10 @@ class SpiritualConditionAPIController extends AppBaseController
         $spiritualCondition = $this->spiritualConditionRepository->findWithoutFail($id);
 
         if (empty($spiritualCondition)) {
-            return $this->sendError('Spiritual Condition not found');
+            return response('Spiritual Condition not found', 404);
         }
 
-        return $this->sendResponse($spiritualCondition->toArray(), 'Spiritual Condition retrieved successfully');
+        return response()->json($spiritualCondition->toArray());
     }
 
     /**
@@ -97,12 +97,12 @@ class SpiritualConditionAPIController extends AppBaseController
         $spiritualCondition = $this->spiritualConditionRepository->findWithoutFail($id);
 
         if (empty($spiritualCondition)) {
-            return $this->sendError('Spiritual Condition not found');
+            return response('Spiritual Condition not found', 404);
         }
 
         $spiritualCondition = $this->spiritualConditionRepository->update($input, $id);
 
-        return $this->sendResponse($spiritualCondition->toArray(), 'SpiritualCondition updated successfully');
+        return response()->json($spiritualCondition->toArray());
     }
 
     /**
@@ -119,11 +119,11 @@ class SpiritualConditionAPIController extends AppBaseController
         $spiritualCondition = $this->spiritualConditionRepository->findWithoutFail($id);
 
         if (empty($spiritualCondition)) {
-            return $this->sendError('Spiritual Condition not found');
+            return response('Spiritual Condition not found', 404);
         }
 
         $spiritualCondition->delete();
 
-        return $this->sendResponse($id, 'Spiritual Condition deleted successfully');
+        return response()->json('Spiritual Condition deleted successfully');
     }
 }
