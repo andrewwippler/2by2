@@ -1,50 +1,30 @@
 <?php
 
 use Tests\TestCase;
-use Tests\ApiTestTrait;
-use Tests\Traits\MakeHouseholdTrait;
 use App\Models\Household;
 use App\Repositories\HouseholdRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class HouseholdRepositoryTest extends TestCase
 {
-    use MakeHouseholdTrait, ApiTestTrait, DatabaseTransactions;
-
-    /**
-     * @var HouseholdRepository
-     */
-    protected $householdRepo;
+    use DatabaseTransactions;
 
     public function setUp()
     {
         parent::setUp();
-        $this->householdRepo = App::make(HouseholdRepository::class);
+        $this->household = factory(App\Models\Household::class)->make();
     }
 
     /**
      * @test create
      */
-    public function testCreateHousehold()
+    public function testCreateAndReadHousehold()
     {
-        $household = $this->fakeHouseholdData();
-        $createdHousehold = $this->householdRepo->create($household);
-        $createdHousehold = $createdHousehold->toArray();
-        $this->assertArrayHasKey('id', $createdHousehold);
-        $this->assertNotNull($createdHousehold['id'], 'Created Household must have id specified');
-        $this->assertNotNull(Household::find($createdHousehold['id']), 'Household with given id must be in DB');
-        $this->assertModelData($household, $createdHousehold);
-    }
 
-    /**
-     * @test read
-     */
-    public function testReadHousehold()
-    {
-        $household = $this->makeHousehold();
-        $dbHousehold = $this->householdRepo->find($household->id);
-        $dbHousehold = $dbHousehold->toArray();
-        $this->assertModelData($household->toArray(), $dbHousehold);
+        $this->assertArrayHasKey('id', $this->household);
+        $this->assertNotNull($this->household->id, 'Created Household must have id specified');
+        $this->assertInstanceOf(Household::class,$this->household);
+
     }
 
     /**
@@ -52,12 +32,10 @@ class HouseholdRepositoryTest extends TestCase
      */
     public function testUpdateHousehold()
     {
-        $household = $this->makeHousehold();
-        $fakeHousehold = $this->fakeHouseholdData();
-        $updatedHousehold = $this->householdRepo->update($fakeHousehold, $household->id);
-        $this->assertModelData($fakeHousehold, $updatedHousehold->toArray());
-        $dbHousehold = $this->householdRepo->find($household->id);
-        $this->assertModelData($fakeHousehold, $dbHousehold->toArray());
+        $fakeHousehold = factory(App\Models\Household::class)->make();
+        $this->household->fill(['last_name' => $fakeHousehold->last_name, 'user' => 1])->save();
+
+        $this->assertEquals($this->household->last_name, $fakeHousehold->last_name);
     }
 
     /**
@@ -65,9 +43,7 @@ class HouseholdRepositoryTest extends TestCase
      */
     public function testDeleteHousehold()
     {
-        $household = $this->makeHousehold();
-        $resp = $this->householdRepo->delete($household->id);
-        $this->assertTrue($resp);
-        $this->assertNull(Household::find($household->id), 'Household should not exist in DB');
+        $resp = $this->household->delete();
+        $this->assertNull(Household::find($this->household->id), 'Household should not exist in DB');
     }
 }

@@ -38,8 +38,6 @@ class HouseholdController extends AppBaseController
         $this->householdRepository->pushCriteria(new RequestCriteria($request));
         $households = $this->householdRepository->all()->load('people','visits');
 
-\Debugbar::info($households[0]['relations']['people']);
-
         return view('households.index')
             ->with('households', $households);
     }
@@ -111,7 +109,7 @@ class HouseholdController extends AppBaseController
 
             return redirect(route('households.index'));
         } else {
-            Flash::failure('Household save failed. Person was missing.');
+            Flash::failure('Household save failed. A person was missing.');
 
             return redirect(route('households.index'));
         }

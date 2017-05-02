@@ -5,6 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateHouseholdAPIRequest;
 use App\Http\Requests\API\UpdateHouseholdAPIRequest;
 use App\Models\Household;
+use App\Models\Department;
+use App\Models\Relationship;
+use App\Models\Person;
+use App\Models\VisitType;
 use App\Repositories\HouseholdRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -55,9 +59,34 @@ class HouseholdAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $households = $this->householdRepository->create($input);
+        $people_count = count($input['people']);
 
-        return response()->json($households->toArray());
+        foreach ($input['people'] as $person) {
+             if ($person['first_name'] != '') {
+                $people[] = new Person([
+                    'first_name' => $person['first_name'],
+                    'middle_name' => $person['middle_name'],
+                    'phone_number' => $person['phone_number'],
+                    'LifeStage' => $person['LifeStage'],
+                    'email' => $person['email'],
+                    'spiritual_condition' => $person['spiritual_condition'],
+                    'prospect_status' => $person['prospect_status'],
+                    'notes' => $person['notes'],
+                    'marital_status' => $person['marital_status'],
+                    'relationship' => $person['relationship'],
+                ]);
+            }
+        }
+
+        if ($people_count > 0) {
+            $household = Household::create($input);
+            $household->people()->saveMany($people);
+
+            return response()->json($household->toArray());
+        } else {
+            return response('Household requires at least 1 person',400);
+        }
+
     }
 
     /**
@@ -71,13 +100,13 @@ class HouseholdAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Household $household */
-        $household = $this->householdRepository->findWithoutFail($id);
+        $household = Household::findOrFail($id);
 
         if (empty($household)) {
             return response('Household not found',404);
         }
 
-        return response()->json($household->toArray());
+        return response()->json($household);
     }
 
     /**
@@ -94,15 +123,40 @@ class HouseholdAPIController extends AppBaseController
         $input = $request->all();
 
         /** @var Household $household */
-        $household = $this->householdRepository->findWithoutFail($id);
+        $household = Household::findOrFail($id);
 
         if (empty($household)) {
             return response('Household not found',404);
         }
 
-        $household = $this->householdRepository->update($input, $id);
+        $people_count = count($input['people']);
 
-        return response()->json($household->toArray());
+        foreach ($input['people'] as $person) {
+             if ($person['first_name'] != '') {
+                $people[] = new Person([
+                    'first_name' => $person['first_name'],
+                    'middle_name' => $person['middle_name'],
+                    'phone_number' => $person['phone_number'],
+                    'LifeStage' => $person['LifeStage'],
+                    'email' => $person['email'],
+                    'spiritual_condition' => $person['spiritual_condition'],
+                    'prospect_status' => $person['prospect_status'],
+                    'notes' => $person['notes'],
+                    'marital_status' => $person['marital_status'],
+                    'relationship' => $person['relationship'],
+                ]);
+            }
+        }
+
+        if ($people_count > 0) {
+            $household = Household::fill($input);
+            $household->people()->saveMany($people);
+
+            return response()->json($household->toArray());
+        } else {
+            return response('Household requires at least 1 person',400);
+        }
+
     }
 
     /**

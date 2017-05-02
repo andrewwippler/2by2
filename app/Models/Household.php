@@ -22,7 +22,6 @@ class Household extends Model
 
     public $fillable = [
         'last_name',
-        'people',
         'home_phone',
         'department',
         'connected',
@@ -37,7 +36,7 @@ class Household extends Model
         'state',
         'zip',
         'user',
-        'visits'
+        'visits',
     ];
 
     /**
@@ -48,7 +47,6 @@ class Household extends Model
     protected $casts = [
         'id' => 'integer',
         'last_name' => 'string',
-        'people' => 'integer',
         'home_phone' => 'string',
         'department' => 'integer',
         'connected' => 'boolean',
@@ -70,7 +68,8 @@ class Household extends Model
      * @var array
      */
     public static $rules = [
-        'last_name' => 'required'
+        'last_name' => 'required',
+        'user' => 'required'
     ];
 
     /**

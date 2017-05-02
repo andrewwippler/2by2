@@ -43,11 +43,11 @@ trait MakeHouseholdTrait
         $fake = Faker::create();
 
         return array_merge([
-            'last_name' => $fake->word,
+            'last_name' => $fake->lastName,
             'people' => [[
-                'first_name' => $fake->word,
-                'middle_name' => $fake->word,
-                'phone_number' => $fake->word,
+                'first_name' => $fake->firstName,
+                'middle_name' => $fake->firstName,
+                'phone_number' => $fake->tollFreePhoneNumber,
                 'LifeStage' => $fake->randomDigitNotNull,
                 'email' => $fake->word,
                 'spiritual_condition' => $fake->randomDigitNotNull,
@@ -56,21 +56,19 @@ trait MakeHouseholdTrait
                 'marital_status' => $fake->randomDigitNotNull,
                 'relationship' => $fake->randomDigitNotNull,
                 ],],
-            'home_phone' => $fake->word,
+            'home_phone' => $fake->tollFreePhoneNumber,
             'department' => $fake->randomDigitNotNull,
-            'connected' => $fake->word,
+            'connected' => $fake->boolean,
             'plan_to_visit' => $fake->date('Y-m-d H:i:s'),
             'interested_in' => $fake->word,
             'family_notes' => $fake->text,
             'first_contacted' => $fake->date('Y-m-d H:i:s'),
             'point_of_contact' => $fake->word,
-            'address1' => $fake->word,
-            'address2' => $fake->word,
-            'city' => $fake->word,
-            'state' => $fake->word,
-            'zip' => $fake->randomDigitNotNull,
-            'user' => $fake->randomDigitNotNull,
-            'visits' => $fake->randomDigitNotNull,
+            'address1' => $fake->buildingNumber . ' ' . $fake->streetName,
+            'address2' => $fake->secondaryAddress,
+            'city' => $fake->city,
+            'state' => $fake->stateAbbr,
+            'zip' => $fake->postcode,
         ], $householdFields);
     }
 }
