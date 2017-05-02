@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class HouseholdApiTest extends TestCase
 {
-    use DatabaseTransactions;
+    use MakeHouseholdTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
      * @var HouseholdRepository
@@ -15,7 +15,6 @@ class HouseholdApiTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->household = factory(App\Models\Household::class)->create();
 
     }
 
@@ -24,10 +23,13 @@ class HouseholdApiTest extends TestCase
      */
     public function testCreateHousehold()
     {
-        $response = $this->json('POST', '/api/v1/households', $this->household->toArray());
+        $household = factory(App\Models\Household::class)->make();
+
+        $response = $this->json('POST', '/api/v1/households', $household->toArray());
+
         $response->assertStatus(200);
 
-        $response = $this->json('GET', '/api/v1/households/'.$this->household->id);
+        $response = $this->json('GET', '/api/v1/households/'.$household->id);
         $response->assertStatus(200);
     }
 
@@ -36,10 +38,11 @@ class HouseholdApiTest extends TestCase
      */
     public function testUpdateHousehold()
     {
-
+        $household = factory(App\Models\Household::class)->make();
         $editedHousehold = factory(App\Models\Household::class)->make();
 
-        $response = $this->json('PUT', '/api/v1/households/'.$this->household->id, $editedHousehold->toArray());
+        $response = $this->json('POST', '/api/v1/households', $household->toArray());
+        $response = $this->json('PUT', '/api/v1/households/'.$household->id, $editedHousehold->toArray());
 
         $response->assertStatus(200);
     }
@@ -49,10 +52,11 @@ class HouseholdApiTest extends TestCase
      */
     public function testDeleteHousehold()
     {
-        $response = $this->json('DELETE', '/api/v1/households/'.$this->household->id);
+        $household = factory(App\Models\Household::class)->make();
+        $response = $this->json('DELETE', '/api/v1/households/'.$household->id);
 
         $response->assertStatus(200);
-        $response = $this->json('GET', '/api/v1/households/'.$this->household->id);
+        $response = $this->json('GET', '/api/v1/households/'.$household->id);
 
         $response->assertStatus(404);
     }
