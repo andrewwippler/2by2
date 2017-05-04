@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeMaritalStatusTrait;
@@ -19,7 +21,7 @@ class MaritalStatusRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->maritalStatusRepo = App::make(MaritalStatusRepository::class);
+        $this->maritalStatusRepo = \App::make(MaritalStatusRepository::class);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeRelationshipTrait;
@@ -19,7 +21,7 @@ class RelationshipRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->relationshipRepo = App::make(RelationshipRepository::class);
+        $this->relationshipRepo = \App::make(RelationshipRepository::class);
     }
 
     /**

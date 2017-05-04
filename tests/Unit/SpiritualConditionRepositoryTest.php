@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeSpiritualConditionTrait;
@@ -19,7 +21,7 @@ class SpiritualConditionRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->spiritualConditionRepo = App::make(SpiritualConditionRepository::class);
+        $this->spiritualConditionRepo = \App::make(SpiritualConditionRepository::class);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakePersonTrait;
@@ -19,7 +21,7 @@ class PersonRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->personRepo = App::make(PersonRepository::class);
+        $this->personRepo = \App::make(PersonRepository::class);
     }
 
     /**

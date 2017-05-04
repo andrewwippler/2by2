@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeLifeStageTrait;
@@ -19,7 +21,7 @@ class LifeStageRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->lifeStageRepo = App::make(LifeStageRepository::class);
+        $this->lifeStageRepo = \App::make(LifeStageRepository::class);
     }
 
     /**

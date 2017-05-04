@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeProspectStatusTrait;
@@ -19,7 +21,7 @@ class ProspectStatusRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->prospectStatusRepo = App::make(ProspectStatusRepository::class);
+        $this->prospectStatusRepo = \App::make(ProspectStatusRepository::class);
     }
 
     /**

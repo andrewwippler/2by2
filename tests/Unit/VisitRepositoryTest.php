@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 use Tests\Traits\MakeVisitTrait;
@@ -19,7 +21,7 @@ class VisitRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->visitRepo = App::make(VisitRepository::class);
+        $this->visitRepo = \App::make(VisitRepository::class);
     }
 
     /**

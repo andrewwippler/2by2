@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit;
+
 use Tests\TestCase;
 use App\Models\Household;
 use App\Repositories\HouseholdRepository;
@@ -12,7 +14,7 @@ class HouseholdRepositoryTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->household = factory(App\Models\Household::class)->make();
+        $this->household = factory(\App\Models\Household::class)->make();
     }
 
     /**
@@ -32,7 +34,7 @@ class HouseholdRepositoryTest extends TestCase
      */
     public function testUpdateHousehold()
     {
-        $fakeHousehold = factory(App\Models\Household::class)->make();
+        $fakeHousehold = factory(\App\Models\Household::class)->make();
         $this->household->fill(['last_name' => $fakeHousehold->last_name, 'user' => 1])->save();
 
         $this->assertEquals($this->household->last_name, $fakeHousehold->last_name);
