@@ -14,3 +14,7 @@ const { mix } = require('laravel-mix');
 mix.styles([
      'resources/assets/css/app.css'
    ], 'public/css/all.css');
+
+if (mix.config.inProduction) {
+   mix.version();
+}
