@@ -189,6 +189,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -245,6 +246,7 @@ return [
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Datatables' => Yajra\Datatables\Datatables::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 
