@@ -23,5 +23,8 @@ class DatabaseSeeder extends Seeder
 
         // Household Types
         $this->call(DepartmentTableSeeder::class);
+
+        // Roles
+        $this->call(RoleTableSeeder::class);
     }
 }

@@ -50,7 +50,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
     }
 
@@ -62,10 +62,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user = User::where('name', '=', $data['name'])->first();
+
+        if ($user->id == 1) {
+            $role = \App\Role::where('name', '=', 'admin')->first();
+            $user->roles()->attach($role->id);
+        }
+
+        return $user;
     }
 }

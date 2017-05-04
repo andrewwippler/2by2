@@ -2,6 +2,8 @@
     <a href="{!! route('households.index') !!}"><i class="fa fa-home"></i><span>Prospects</span></a>
 </li>
 
+{{-- Admin --}}
+@role('admin')
 <li class="treeview {{ Request::is('departments*',
     'lifeStages*',
     'maritalStatuses*',
@@ -57,3 +59,4 @@
     </li> --}}
   </ul>
 </li>
+@endrole
