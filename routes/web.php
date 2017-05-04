@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('people', 'PersonController');
 
     Route::resource('households', 'HouseholdController');
+
+    Route::resource('teams', 'TeamController');
 });
 
 Route::get('/', function () {

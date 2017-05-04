@@ -10,7 +10,8 @@
     'prospectStatuses*',
     'relationships*',
     'spiritualConditions*',
-    'visitTypes*'
+    'visitTypes*',
+    'teams*'
     ) ? 'active' : '' }}">
     <a href="#">
                 <i class="fa fa-lock"></i> <span>Admin</span>
@@ -46,6 +47,10 @@
 
     <li class="{{ Request::is('visitTypes*') ? 'active' : '' }}">
         <a href="{!! route('visitTypes.index') !!}"><i class="fa fa-envelope"></i><span>VisitTypes</span></a>
+    </li>
+
+    <li class="{{ Request::is('teams*') ? 'active' : '' }}">
+        <a href="{!! route('teams.index') !!}"><i class="fa fa-edit"></i><span>Teams</span></a>
     </li>
   </ul>
 </li>
