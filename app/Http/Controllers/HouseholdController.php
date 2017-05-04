@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Household;
 use App\Models\Department;
 use App\Models\Relationship;
 use App\Models\Person;
@@ -35,8 +36,7 @@ class HouseholdController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->householdRepository->pushCriteria(new RequestCriteria($request));
-        $households = $this->householdRepository->all()->load('people','visits');
+        $households = Household::where('user', '=', Auth::id())->with('people','visits')->get();
 
         return view('households.index')
             ->with('households', $households);
@@ -127,7 +127,7 @@ class HouseholdController extends AppBaseController
     {
         $household = $this->householdRepository->findWithoutFail($id)->load('people','visits');
 
-        if (empty($household)) {
+        if (empty($household) || $household->user != Auth::id()) {
             Flash::error('Household not found');
 
             return redirect(route('households.index'));
@@ -159,7 +159,7 @@ class HouseholdController extends AppBaseController
     {
         $household = $this->householdRepository->findWithoutFail($id)->load('people');
 
-        if (empty($household)) {
+        if (empty($household) || $household->user != Auth::id()) {
             Flash::error('Household not found');
 
             return redirect(route('households.index'));
@@ -188,28 +188,11 @@ class HouseholdController extends AppBaseController
     {
         $household = $this->householdRepository->findWithoutFail($id);
 
-        if (empty($household)) {
+        if (empty($household) || $household->user != Auth::id()) {
             Flash::error('Household not found');
 
             return redirect(route('households.index'));
         }
-
-        // Maybe I do not want people to update here.
-
-        // $people_count = count($input['first_name']);
-        //
-        // for ($i=0; $i < $people_count; $i++) {
-        //     if ($input['first_name'][$i] != '') {
-        //         $people[] = new Person([
-        //             'first_name' => $input['first_name'][$i],
-        //             'email' => $input['email'][$i],
-        //             'phone_number' => $input['phone_number'][$i],
-        //             'relationship' => $input['relationship'][$i],
-        //         ]);
-        //     }
-        // }
-
-        // $household = $this->householdRepository->update($request->all(), $id)->people()->saveMany($people);
 
         $household = $this->householdRepository->update($request->all(), $id);
 
@@ -229,7 +212,7 @@ class HouseholdController extends AppBaseController
     {
         $household = $this->householdRepository->findWithoutFail($id)->load('people', 'visits');
 
-        if (empty($household)) {
+        if (empty($household) || $household->user != Auth::id()) {
             Flash::error('Household not found');
 
             return redirect(route('households.index'));
