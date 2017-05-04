@@ -20,8 +20,6 @@
               </a>
   <ul class="treeview-menu">
 
-
-
     <li class="{{ Request::is('departments*') ? 'active' : '' }}">
         <a href="{!! route('departments.index') !!}"><i class="fa fa-object-group"></i><span>Departments</span></a>
     </li>
@@ -49,14 +47,6 @@
     <li class="{{ Request::is('visitTypes*') ? 'active' : '' }}">
         <a href="{!! route('visitTypes.index') !!}"><i class="fa fa-envelope"></i><span>VisitTypes</span></a>
     </li>
-
-    {{-- <li class="{{ Request::is('visits*') ? 'active' : '' }}">
-        <a href="{!! route('visits.index') !!}"><i class="fa fa-comments-o"></i><span>Visits</span></a>
-    </li>
-
-    <li class="{{ Request::is('people*') ? 'active' : '' }}">
-        <a href="{!! route('people.index') !!}"><i class="fa fa-users"></i><span>People</span></a>
-    </li> --}}
   </ul>
 </li>
 @endrole
