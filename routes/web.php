@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('households', 'HouseholdController');
 
     Route::resource('teams', 'TeamController');
+    
+    Route::resource('sundaySchools', 'SundaySchoolController');
 });
 
 Route::get('/', function () {

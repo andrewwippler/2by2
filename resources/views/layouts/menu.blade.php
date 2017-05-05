@@ -55,3 +55,7 @@
   </ul>
 </li>
 @endrole
+<li class="{{ Request::is('sundaySchools*') ? 'active' : '' }}">
+    <a href="{!! route('sundaySchools.index') !!}"><i class="fa fa-edit"></i><span>SundaySchools</span></a>
+</li>
+

@@ -38,3 +38,5 @@ Route::resource('people', 'PersonAPIController');
 Route::resource('households', 'HouseholdAPIController');
 
 Route::resource('teams', 'TeamAPIController');
+
+Route::resource('sunday_schools', 'SundaySchoolAPIController');
