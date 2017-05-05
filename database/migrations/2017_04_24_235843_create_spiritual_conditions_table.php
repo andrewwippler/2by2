@@ -14,7 +14,7 @@ class CreateSpiritualConditionsTable extends Migration
     public function up()
     {
         Schema::create('spiritual_conditions', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

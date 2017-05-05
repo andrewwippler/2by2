@@ -14,7 +14,7 @@ class CreateHouseholdsTable extends Migration
     public function up()
     {
         Schema::create('households', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->increments('id');
             $table->string('last_name');
             $table->integer('people', false)->nullable();
             $table->string('home_phone')->nullable();
