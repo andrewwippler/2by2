@@ -34,10 +34,15 @@ class HouseholdRepositoryTest extends TestCase
      */
     public function testUpdateHousehold()
     {
-        $fakeHousehold = factory(\App\Models\Household::class)->make();
-        $this->household->fill(['last_name' => $fakeHousehold->last_name, 'user' => 1])->save();
+        $household = new Household();
+        $household->last_name = "Douglas";
+        $household->department = 0;
+        $this->assertEquals($household->last_name, "Douglas");
 
-        $this->assertEquals($this->household->last_name, $fakeHousehold->last_name);
+        $fakeHousehold = factory(\App\Models\Household::class)->make();
+        $household->fill(['last_name' => $fakeHousehold->last_name, 'user' => 1])->save();
+
+        $this->assertEquals($household->last_name, $fakeHousehold->last_name);
     }
 
     /**
