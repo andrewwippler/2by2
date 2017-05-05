@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
 
         // Roles
         $this->call(RoleTableSeeder::class);
+
+        // Other
+        $this->call(SundaySchoolTableSeeder::class);
+        $this->call(TeamTableSeeder::class);
     }
 }
