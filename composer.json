@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.0.0",
         "barryvdh/laravel-debugbar": "^2.3",
         "doctrine/dbal": "^2.5",
         "infyomlabs/adminlte-templates": "5.3.x-dev",
