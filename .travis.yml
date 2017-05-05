@@ -2,8 +2,11 @@ language: php
 php:
   - '7.1'
   - nightly
+services:
+  - mysql
+before_install:
+  - mysql -e 'create database homestead_test;'
 before_script:
   - cp .env.travis .env
-  - mysql -e 'create database homestead_test;'
   - composer self-update
   - composer install --no-interaction
