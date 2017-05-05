@@ -13,7 +13,7 @@
             <div class="box-body">
                 <div class="row">
                     {!! Form::open(['route' => 'people.store']) !!}
-
+                        {!! Form::hidden('household_id', $household_id, ['class' => 'form-control']) !!}
                         @include('people.fields')
 
                     {!! Form::close() !!}

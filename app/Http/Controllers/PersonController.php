@@ -15,6 +15,7 @@ use App\Models\SpiritualCondition;
 use App\Models\ProspectStatus;
 use App\Models\MaritalStatus;
 use App\Models\Relationship;
+use App\Models\Household;
 
 class PersonController extends AppBaseController
 {
@@ -64,6 +65,29 @@ class PersonController extends AppBaseController
     }
 
     /**
+     * Show the form for creating a new Person.
+     *
+     * @return Response
+     */
+    public function createPerson($id)
+    {
+
+        $life = LifeStage::all();
+        $spirit = SpiritualCondition::all();
+        $prospect = ProspectStatus::all();
+        $marital = MaritalStatus::all();
+        $relation = Relationship::all();
+
+        return view('people.create')
+            ->with('lifestage', $this->makePrettyArray($life))
+            ->with('household_id', $id)
+            ->with('spiritual_condition', $this->makePrettyArray($spirit))
+            ->with('prospect_status', $this->makePrettyArray($prospect))
+            ->with('marital_status', $this->makePrettyArray($marital))
+            ->with('relationship', $this->makePrettyArray($relation));
+    }
+
+    /**
      * Store a newly created Person in storage.
      *
      * @param CreatePersonRequest $request
@@ -73,12 +97,14 @@ class PersonController extends AppBaseController
     public function store(CreatePersonRequest $request)
     {
         $input = $request->all();
+        $household = Household::find($input['household_id']);
 
         $person = $this->personRepository->create($input);
+        $person->household()->associate($household)->save();
 
-        Flash::success('Person saved successfully.');
+        Flash::success('Person added successfully.');
 
-        return redirect(route('people.index'));
+        return redirect(route('households.index'));
     }
 
     /**

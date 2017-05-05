@@ -5,13 +5,6 @@
     {!! Form::select('department', $department, null, ['class' => 'form-control']) !!}
 </div>
 <div class="clearfix hidden-xs"></div>
-<!-- Connected Field -->
-<div class="form-group checkbox col-sm-6">
-    <label class="checkbox">
-        {!! Form::hidden('connected', false) !!}
-        {!! Form::checkbox('connected', null, null) !!} Connected
-    </label>
-</div>
 
 <div class="clearfix hidden-xs"></div>
 <!-- Last Name Field -->
@@ -35,11 +28,14 @@
             <a href="mailto:{!! $person->phone_number !!}" class='btn btn-default btn-lg'><i class="fa fa-phone"></i></a>
             @endif
 
-            <br><a href="{{ url("/people/$person->id/edit") }}" class="btn btn-default btn-lg"><i class="fa fa-pencil"></i> Edit Person</a><br>
+            <p><a href="{{ url("/people/$person->id/edit") }}" class="btn btn-default btn-lg"><i class="fa fa-pencil"></i> Edit Person</a></p>
         </div>
     @endforeach
 <!-- END PERSON -->
+
 </div>
+
+<div class="form-group col-sm-12 col-lg-12"><a href="{{ url("/new-person/$household->id") }}" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Add Person</a></div>
 
 
 <!-- Family Notes Field -->
