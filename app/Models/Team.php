@@ -15,7 +15,7 @@ class Team extends Model
     use SoftDeletes;
 
     public $table = 'teams';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -42,5 +42,12 @@ class Team extends Model
         'name' => 'required'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function profile()
+    {
+        return $this->belongsTo(\App\Models\Profile::class, 'team_id');
+    }
+
 }

@@ -15,7 +15,7 @@ class SundaySchool extends Model
     use SoftDeletes;
 
     public $table = 'sunday_schools';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -42,5 +42,11 @@ class SundaySchool extends Model
         'name' => 'required'
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function profile()
+    {
+        return $this->belongsTo(\App\Models\Profile::class, 'sunday_school_id');
+    }
 }
