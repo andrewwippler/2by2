@@ -1,5 +1,7 @@
 <table class="table table-responsive" id="profiles-table">
     <thead>
+        <th>Id</th>
+        <th>User Id</th>
         <th>Sunday School Id</th>
         <th>Team Id</th>
         <th colspan="3">Action</th>
@@ -7,6 +9,8 @@
     <tbody>
     @foreach($profiles as $profile)
         <tr>
+            <td>{!! $profile->id !!}</td>
+            <td>{!! $profile->user_id !!}</td>
             <td>{!! $profile->sunday_school_id !!}</td>
             <td>{!! $profile->team_id !!}</td>
             <td>

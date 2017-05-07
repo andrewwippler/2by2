@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -74,6 +75,14 @@ class RegisterController extends Controller
             $role = \App\Role::where('name', '=', 'admin')->first();
             $user->roles()->attach($role->id);
         }
+
+        // create the profile
+
+        Profile::create([
+            'user_id' => $user->id,
+            'team_id' => 0,
+            'sunday_school_id' => 0,
+        ]);
 
         return $user;
     }
