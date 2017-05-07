@@ -20,9 +20,6 @@ class CreateProfilesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('sunday_school_id')->references('id')->on('sunday_schools');
-            $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

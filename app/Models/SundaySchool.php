@@ -42,11 +42,11 @@ class SundaySchool extends Model
         'name' => 'required'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function profile()
-    {
-        return $this->belongsTo(\App\Models\Profile::class, 'sunday_school_id');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  **/
+    // public function profile()
+    // {
+    //     return $this->belongsTo(\App\Models\Profile::class, 'sunday_school_id');
+    // }
 }

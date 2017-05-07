@@ -12,6 +12,7 @@ class ProfileRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'sunday_school_id',
+        'user_id',
         'team_id'
     ];
 

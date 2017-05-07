@@ -22,6 +22,7 @@ class Profile extends Model
 
     public $fillable = [
         'sunday_school_id',
+        'user_id',
         'team_id'
     ];
 
@@ -59,6 +60,14 @@ class Profile extends Model
     public function sunday_school()
     {
         return $this->hasOne(\App\Models\SundaySchool::class, 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function user()
+    {
+        return $this->hasOne(\App\User::class, 'id');
     }
 
 

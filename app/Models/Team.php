@@ -42,12 +42,12 @@ class Team extends Model
         'name' => 'required'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function profile()
-    {
-        return $this->belongsTo(\App\Models\Profile::class, 'team_id');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  **/
+    // public function profile()
+    // {
+    //     return $this->belongsTo(\App\Models\Profile::class, 'team_id');
+    // }
 
 }
