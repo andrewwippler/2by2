@@ -34,8 +34,6 @@ class VisitController extends AppBaseController
         $this->visitRepository->pushCriteria(new RequestCriteria($request));
         $visits = $this->visitRepository->all();
 
-        \Debugbar::info($visits);
-
         $visit_types = VisitType::all();
 
         return view('visits.index')
