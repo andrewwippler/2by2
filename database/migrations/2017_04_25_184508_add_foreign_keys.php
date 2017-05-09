@@ -32,11 +32,11 @@ class AddForeignKeys extends Migration
     public function down()
     {
         Schema::table('visits', function($table) {
-            $table->dropColumn('household_id');
+            $table->dropForeign(['household_id']);
         });
 
         Schema::table('people', function($table) {
-            $table->dropColumn('household_id');
+            $table->dropForeign(['household_id']);
         });
     }
 }

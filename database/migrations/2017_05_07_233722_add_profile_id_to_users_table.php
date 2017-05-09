@@ -6,6 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddProfileIdToUsersTable extends Migration
 {
+
+
     /**
      * Run the migrations.
      *
@@ -27,7 +29,7 @@ class AddProfileIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function($table) {
-            $table->dropColumn('profile_id');
+            $table->dropForeign(['profile_id']);
         });
     }
 }
