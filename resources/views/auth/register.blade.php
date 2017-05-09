@@ -92,11 +92,7 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a>
-                        </label>
-                    </div>
+                    
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
