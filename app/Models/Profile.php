@@ -63,11 +63,11 @@ class Profile extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function user()
     {
-        return $this->hasOne(\App\User::class, 'id');
+        return $this->belongsTo(\App\User::class);
     }
 
 

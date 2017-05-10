@@ -34,14 +34,22 @@ class ProfileController extends AppBaseController
         $this->profileRepository->pushCriteria(new RequestCriteria($request));
         $profiles = $this->profileRepository->all();
 
-        // if (\Entrust::hasRole('admin')) {
+        if (\Entrust::hasRole('admin')) {
+            $users = \App\User::all();
+            $team = Team::all();
+            $sunday_schools = SundaySchool::all();
+
             return view('profiles.index')
-                ->with('profiles', $profiles);
-        // } else {
-        //     Flash::error('You do not have permission to access the profile list.');
-        //
-        //     return redirect(route('households.index'));
-        // }
+                ->with('profiles', $profiles)
+                ->with('users', $this->makePrettyArray($users))
+                ->with('teams', $this->makePrettyArray($team))
+                ->with('sunday_schools', $this->makePrettyArray($sunday_schools));
+
+        } else {
+            Flash::error('You do not have permission to access the profile list.');
+
+            return redirect(route('households.index'));
+        }
 
     }
 
@@ -93,7 +101,7 @@ class ProfileController extends AppBaseController
      */
     public function show($id)
     {
-        $profile = $this->profileRepository->findWithoutFail($id);
+        $profile = \App\User::find($id)->profile;
 
         if (empty($profile)) {
             Flash::error('Profile not found');
@@ -101,7 +109,7 @@ class ProfileController extends AppBaseController
             return redirect(route('profiles.index'));
         }
 
-        if (\Entrust::hasRole('admin') || $profile->id = \Auth::id()) {
+        if (\Entrust::hasRole('admin') || $profile->user_id == \Auth::id()) {
 
             $teams = Team::all();
             $sunday_schools = SundaySchool::all();
@@ -127,7 +135,7 @@ class ProfileController extends AppBaseController
      */
     public function edit($id)
     {
-        $profile = $this->profileRepository->findWithoutFail($id);
+        $profile = \App\User::find($id)->profile;
 
         if (empty($profile)) {
             Flash::error('Profile not found');
@@ -148,7 +156,7 @@ class ProfileController extends AppBaseController
                 ->with('users', $this->makePrettyArray($users));
         }
 
-        if ($profile->id = \Auth::id()) {
+        if ($profile->user_id == \Auth::id()) {
             $teams = Team::all();
             $sunday_schools = SundaySchool::all();
 
@@ -178,7 +186,7 @@ class ProfileController extends AppBaseController
             return redirect(route('profiles.index'));
         }
 
-        if (\Entrust::hasRole('admin') || $profile->id = \Auth::id()) {
+        if (\Entrust::hasRole('admin') || $profile->user_id == \Auth::id()) {
 
             $profile = $this->profileRepository->update($request->all(), $id);
 
@@ -209,7 +217,7 @@ class ProfileController extends AppBaseController
             return redirect(route('profiles.index'));
         }
 
-        if (\Entrust::hasRole('admin') || $profile->id = \Auth::id()) {
+        if (\Entrust::hasRole('admin') && $profile->user_id != \Auth::id()) {
             $this->profileRepository->delete($id);
 
             Flash::success('Profile deleted successfully.');

@@ -52,14 +52,14 @@
     <li class="{{ Request::is('teams*') ? 'active' : '' }}">
         <a href="{!! route('teams.index') !!}"><i class="fa fa-edit"></i><span>Teams</span></a>
     </li>
+
+    <li class="{{ Request::is('sundaySchools*') ? 'active' : '' }}">
+        <a href="{!! route('sundaySchools.index') !!}"><i class="fa fa-edit"></i><span>SundaySchools</span></a>
+    </li>
   </ul>
 </li>
 @endrole
-<li class="{{ Request::is('sundaySchools*') ? 'active' : '' }}">
-    <a href="{!! route('sundaySchools.index') !!}"><i class="fa fa-edit"></i><span>SundaySchools</span></a>
-</li>
 
 <li class="{{ Request::is('profiles*') ? 'active' : '' }}">
     <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profiles</span></a>
 </li>
-

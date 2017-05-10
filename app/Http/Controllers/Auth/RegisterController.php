@@ -78,11 +78,12 @@ class RegisterController extends Controller
 
         // create the profile
 
-        Profile::create([
-            'user_id' => $user->id,
+        $profile = Profile::create([
             'team_id' => 0,
             'sunday_school_id' => 0,
         ]);
+
+        $user->profile()->save($profile);
 
         return $user;
     }
