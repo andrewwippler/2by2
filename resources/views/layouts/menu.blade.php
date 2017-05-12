@@ -1,5 +1,5 @@
 <li class="treeview {{ Request::is('households*','people*','visits*') ? 'active' : '' }}">
-    <a href="{!! route('households.index') !!}"><i class="fa fa-home"></i><span>Prospects</span></a>
+    <a href="{!! route('households.index') !!}"><i class="fa fa-address-book "></i><span>Prospects</span></a>
 </li>
 
 {{-- Admin --}}
@@ -11,10 +11,11 @@
     'relationships*',
     'spiritualConditions*',
     'visitTypes*',
-    'teams*'
+    'teams*',
+    'sundaySchools*'
     ) ? 'active' : '' }}">
     <a href="#">
-                <i class="fa fa-lock"></i> <span>Admin</span>
+                <i class="fa fa-cogs"></i> <span>Global Settings</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -50,16 +51,48 @@
     </li>
 
     <li class="{{ Request::is('teams*') ? 'active' : '' }}">
-        <a href="{!! route('teams.index') !!}"><i class="fa fa-edit"></i><span>Teams</span></a>
+        <a href="{!! route('teams.index') !!}"><i class="fa fa-user-plus"></i><span>Teams</span></a>
     </li>
 
     <li class="{{ Request::is('sundaySchools*') ? 'active' : '' }}">
-        <a href="{!! route('sundaySchools.index') !!}"><i class="fa fa-edit"></i><span>SundaySchools</span></a>
+        <a href="{!! route('sundaySchools.index') !!}"><i class="fa fa-user-circle"></i><span>SundaySchools</span></a>
+    </li>
+  </ul>
+</li>
+
+<li class="treeview {{ Request::is(
+    'profiles*'
+    ) ? 'active' : '' }}">
+    <a href="#">
+                <i class="fa fa-lock"></i> <span>Admin</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+  <ul class="treeview-menu">
+    <li class="{{ Request::is('profiles*') ? 'active' : '' }}">
+        <a href="{!! route('profiles.index') !!}"><i class="fa fa-id-card-o"></i><span>Profiles</span></a>
+    </li>
+  </ul>
+</li>
+
+<li class="treeview {{ Request::is(
+
+    ) ? 'active' : '' }}">
+    <a href="#">
+                <i class="fa fa-area-chart "></i> <span>Reports</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+  <ul class="treeview-menu">
+    <li class="{{ Request::is(false) ? 'active' : '' }}">
+        <a href="#"><i class="fa fa-id-bar-chart"></i><span>Coming Soon!</span></a>
     </li>
   </ul>
 </li>
 @endrole
 
-<li class="{{ Request::is('profiles*') ? 'active' : '' }}">
-    <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profiles</span></a>
+<li class="treeview {{ Request::is('profiles*') ? 'active' : '' }}">
+    <a href="{!! url('profiles').'/'!!}{!! Auth::user()->id !!}/edit"><i class="fa fa-cog"></i><span>My Profile</span></a>
 </li>
