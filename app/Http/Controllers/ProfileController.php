@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Team;
 use App\Models\SundaySchool;
+use App\User;
 
 class ProfileController extends AppBaseController
 {
@@ -35,7 +36,7 @@ class ProfileController extends AppBaseController
         $profiles = $this->profileRepository->all();
 
         if (\Entrust::hasRole('admin')) {
-            $users = \App\User::all();
+            $users = User::all();
             $team = Team::all();
             $sunday_schools = SundaySchool::all();
 
@@ -101,7 +102,7 @@ class ProfileController extends AppBaseController
      */
     public function show($id)
     {
-        $profile = \App\User::find($id)->profile;
+        $profile = User::find($id)->profile;
 
         if (empty($profile)) {
             Flash::error('Profile not found');
@@ -135,7 +136,7 @@ class ProfileController extends AppBaseController
      */
     public function edit($id)
     {
-        $profile = \App\User::find($id)->profile;
+        $profile = User::find($id)->profile;
 
         if (empty($profile)) {
             Flash::error('Profile not found');
@@ -165,6 +166,10 @@ class ProfileController extends AppBaseController
                 ->with('sunday_schools', $this->makePrettyArray($sunday_schools))
                 ->with('teams', $this->makePrettyArray($teams));
         }
+
+        Flash::error('Profile not found');
+
+        return redirect(route('households.index'));
 
     }
 
