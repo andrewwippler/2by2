@@ -22,7 +22,7 @@
                  <div class="clearfix hidden-xs"></div>
                     <!-- Last Name Field -->
                     <div class="form-group col-sm-6">
-                        {!! Form::label('last_name', 'Last Name:') !!}
+                        {!! Form::label('last_name', 'Last Name:') !!} <span class="text-danger small">required</span>
                         {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
                     </div>
 
@@ -31,7 +31,7 @@
 <div class="row col-sm-12 person-group">
     <!-- First Name Field -->
     <div class="form-group col-sm-3 col-xs-12">
-        {!! Form::label('first_name[]', 'First Name:') !!}
+        {!! Form::label('first_name[]', 'First Name:') !!} <span class="text-danger small">required</span>
         {!! Form::text('first_name[]', null, ['class' => 'form-control']) !!}
     </div>
 

@@ -1,4 +1,4 @@
-<div class="row col-xs-12">
+
 <h2>People</h2>
 <!-- BEGIN PERSON -->
     @foreach ($people as $person)
@@ -15,7 +15,6 @@
         </div>
     @endforeach
 <!-- END PERSON -->
-</div>
 <div class="clearfix"></div>
 <h2>Household information</h2>
     @if ($household->interested_in) <p><b>Interested In:</b> {!! $household->interested_in !!}</p> @endif
@@ -33,6 +32,7 @@
 <h2>Visits</h2>
     <!-- Visits Field -->
     <p><a href="{{ url("/new-visit/$household->id") }}" class="btn btn-lg btn-success"><i class="fa fa-plus"></i> Add Visit</a></p>
+
     <div class="table-responsive">
         <table class="table table-hover" id="households-table">
             <thead>
