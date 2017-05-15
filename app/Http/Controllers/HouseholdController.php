@@ -38,8 +38,26 @@ class HouseholdController extends AppBaseController
     {
         $households = Household::where('user', '=', Auth::id())->with('people','visits')->get();
 
+        foreach ($households as $household)
+        {
+            if (count($household['relations']['people']) < 2)
+            {
+                $people = $household['relations']['people'][0]->first_name;
+            }
+            else
+            {
+                foreach ($household['relations']['people'] as $person)
+                {
+                    $peopleArray[] =  $person->first_name;
+                }
+                $people = implode(", ", $peopleArray);
+            }
+            $peopleInHouse[$household->id] = $people;
+        }
+
         return view('households.index')
-            ->with('households', $households);
+            ->with('households', $households)
+            ->with('people', $peopleInHouse);
     }
 
     /**
