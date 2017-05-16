@@ -34,6 +34,7 @@
 <h2>Visits</h2>
     <!-- Visits Field -->
     <p><a href="{{ url("/new-visit/$household->id") }}" class="btn btn-lg btn-success"><i class="fa fa-plus"></i> Add Visit</a></p>
+@if (count($visits) > 0)
 <div class="row">
     <div class="col-md-12">
         <ul class="timeline">
@@ -67,6 +68,10 @@
                       </div>
             </li>
             @endforeach
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
         </ul>
     </div>
 </div>
+@endif

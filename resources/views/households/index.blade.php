@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1 class="pull-left">Prospects</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('households.create') !!}">Add New</a>
+           <a class="btn btn-success pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('households.create') !!}"><i class="fa fa-plus"></i> Add New</a>
         </h1>
     </section>
     <div class="content">
@@ -14,8 +14,10 @@
 
         <div class="clearfix"></div>
         <div class="box box-primary">
-            <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
                     @include('households.table')
+                </div>
             </div>
         </div>
     </div>

@@ -14,29 +14,33 @@
 </div>
 <div class="clearfix hidden-xs"></div>
 
-<div class="row col-xs-12">
-<!-- BEGIN PERSON -->
+<div class="row">
+    <div class="col-sm-12">
     @foreach ($people as $person)
-        <div class="col-sm-4">
-            <h3>{!! $person->first_name !!} @if ($person->relationship)
-            - {!! $relationship[$person->relationship] !!}
-        @endif </h3><br>
-            @if ($person->email)
-            <a href="mailto:{!! $person->email !!}" class='btn btn-default btn-lg'><i class="fa fa-envelope"></i></a>
-            @endif
-            @if ($person->phone_number)
-            <a href="mailto:{!! $person->phone_number !!}" class='btn btn-default btn-lg'><i class="fa fa-phone"></i></a>
-            @endif
-
-            <p><a href="{{ url("/people/$person->id/edit") }}" class="btn btn-default btn-lg"><i class="fa fa-pencil"></i> Edit Person</a></p>
+        <!-- BEGIN PERSON -->
+        <div class="form-group">
+            <div class="col-sm-6 col-md-4">
+                <h3>{!! $person->first_name !!} @if ($person->relationship)
+                - {!! $relationship[$person->relationship] !!}
+            @endif </h3>
+                <div class='btn-group-vertical'>
+                    @if ($person->email)
+                    <a href="mailto:{!! $person->email !!}" class='btn btn-default'><i class="fa fa-envelope"></i> Email {!! $person->first_name !!}</a>
+                    @endif
+                    @if ($person->phone_number)
+                    <a href="mailto:{!! $person->phone_number !!}" class='btn btn-default'><i class="fa fa-phone"></i> Call {!! $person->first_name !!}</a>
+                    @endif
+                    <a href="{{ url("/people/$person->id/edit") }}" class="btn btn-default"><i class="fa fa-pencil"></i> Edit {!! $person->first_name !!}</a>
+                </div>
+            </div>
         </div>
+        <!-- END PERSON -->
     @endforeach
-<!-- END PERSON -->
-
+    </div>
 </div>
-
-<div class="form-group col-sm-12 col-lg-12"><a href="{{ url("/new-person/$household->id") }}" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Add Person</a></div>
-
+<div class="col-sm-12">
+    <div class="form-group"><a href="{{ url("/new-person/$household->id") }}" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Add Person</a></div>
+</div>
 
 <!-- Family Notes Field -->
 <div class="form-group col-sm-12 col-lg-12">
