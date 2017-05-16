@@ -8,8 +8,8 @@
     <tbody>
     @foreach($profiles as $profile)
         <tr>
-            {{-- have to minus 1 because user_id starts at 1 and not 0 --}}
-            {{-- <td>{!! $users[$profile->user_id] !!}</td> --}}
+            {{-- have to minus 1 because user_id starts at 0 and not 1 --}}
+            <td>{!! $users[$profile->user_id-1] !!}</td>
             <td>{!! $teams[$profile->team_id] !!}</td>
             <td>{!! $sunday_schools[$profile->sunday_school_id] !!}</td>
             <td>
