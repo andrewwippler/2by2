@@ -14,6 +14,7 @@ use App\Models\Household;
 use App\Models\Department;
 use App\Models\Relationship;
 use App\Models\Person;
+use App\Models\Profile;
 use App\Models\VisitType;
 use Illuminate\Support\Facades\Auth;
 use libphonenumber;
@@ -69,7 +70,7 @@ class HouseholdController extends AppBaseController
     {
         $dept = Department::all();
         $rela = Relationship::all();
-        // $prof = Profile::find(); // find user's profile
+        $prof = Profile::whereUserId(Auth::id())->first(); // find user's profile
 
         return view('households.create')
             ->with('department', $this->makePrettyArray($dept))

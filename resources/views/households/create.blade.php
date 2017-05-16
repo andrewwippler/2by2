@@ -83,19 +83,19 @@
                     <!-- City Field -->
                     <div class="form-group col-md-3 col-sm-6">
                         {!! Form::label('city', 'City:') !!}
-                        {!! Form::text('city', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('city', $profile->default_city, ['class' => 'form-control']) !!}
                     </div>
 <div class="clearfix visible-sm"></div>
                     <!-- State Field -->
                     <div class="form-group col-md-1 col-sm-6">
                         {!! Form::label('state', 'State:') !!}
-                        {!! Form::text('state', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('state', $profile->default_state, ['class' => 'form-control']) !!}
                     </div>
 <div class="clearfix visible-sm"></div>
                     <!-- Zip Field -->
                     <div class="form-group col-md-2 col-sm-6">
                         {!! Form::label('zip', 'Zip:') !!}
-                        {!! Form::text('zip', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('zip', $profile->default_zip, ['class' => 'form-control']) !!}
                     </div>
 <div class="clearfix hidden-xs"></div>
                     <!-- User Field -->
