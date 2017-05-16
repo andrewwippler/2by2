@@ -22,11 +22,13 @@
     @if ($household->point_of_contact) <p><b>Point Of Contact:</b> {!! $household->point_of_contact !!}</p> @endif
 
     <!-- Address1 Field -->
-    @if ($household->address1 && $household->zip) <div class='address'><b>Address:</b><br>
+    @if ($household->address1 && $household->zip) <address><b>Address:</b><br>
         {!! $household->address1 !!}<br>
         @if ($household->address2) {!! $household->address2 !!}<br> @endif
         {!! $household->city !!}, {!! $household->state !!} {!! $household->zip !!}<br>
-    </div> @endif
+    </address>
+    <a href="https://www.google.com/maps/place/{!! $household->address1 !!}{!! $household->address2 !!},{!! $household->city !!},{!! $household->state !!} {!! $household->zip !!}" class="btn btn-large btn-info"><i class="fa fa-map"></i> View On Map</a>
+    @endif
     @if ($household->family_notes) <p><b>Family Notes:</b> {!! $household->family_notes !!}</p> @endif
 
 <h2>Visits</h2>
