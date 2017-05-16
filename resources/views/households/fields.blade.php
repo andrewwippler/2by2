@@ -80,7 +80,7 @@
 <!-- Plan To Visit Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('plan_to_visit', 'Plan To Visit:') !!}
-    {!! Form::input('date', 'plan_to_visit', $household->plan_to_visit, ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'plan_to_visit', $household->plan_to_visit, ['class' => 'form-control datepicker']) !!}
 </div>
 
 <!-- Interested In Field -->
@@ -92,7 +92,7 @@
 <!-- First Contacted Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('first_contacted', 'First Contacted:') !!}
-    {!! Form::input('date', 'first_contacted', $household->first_contacted, ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'first_contacted', $household->first_contacted, ['class' => 'form-control datepicker']) !!}
 </div>
 
 <!-- Point Of Contact Field -->
@@ -109,3 +109,15 @@
    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
    <a href="{!! route('households.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
+@section('scripts')
+    <script>
+    $(function() {
+        $( ".datepicker" ).datepicker();
+    });
+    </script>
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
