@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -17,7 +18,10 @@ class Visit extends Model
     public $table = 'visits';
 
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+        'made',
+    ];
 
 
     public $fillable = [
@@ -45,6 +49,23 @@ class Visit extends Model
     public static $rules = [
         'notes' => 'required'
     ];
+
+    /**
+    * Format date on set
+    */
+    public function setMadeAttribute($date)
+    {
+        return $this->attributes['made'] = ($date != '')?
+                Carbon::parse($date): null;
+    }
+
+    /**
+    * Format date on get
+    */
+    public function getMadeAttribute($date)
+    {
+        return ($date != null) ? Carbon::parse($date)->toFormattedDateString() : null;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -34,30 +34,39 @@
 <h2>Visits</h2>
     <!-- Visits Field -->
     <p><a href="{{ url("/new-visit/$household->id") }}" class="btn btn-lg btn-success"><i class="fa fa-plus"></i> Add Visit</a></p>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="timeline">
+            <li class="time-label">
+                  <span class="bg-yellow">
+                    History
+                  </span>
+            </li>
+            @foreach ($visits as $visit)
+            <li>
 
-    <div class="table-responsive">
-        <table class="table table-hover" id="households-table">
-            <thead>
-                <th>Visit Type</th>
-                <th>Occurred On</th>
-                <th>Notes</th>
-                <th>&nbsp;</th>
-            </thead>
-            <tbody>
-                @foreach ($visits as $visit)
-                    <tr>
-                        <td>{!! $visit_type[$visit->type] !!}</td>
-                        <td>{!! $visit->made !!}</td>
-                        <td>{!! $visit->notes !!}</td>
-                        <td>{!! Form::open(['route' => ['visits.destroy', $visit->id], 'method' => 'delete']) !!}
-                            <div class='btn-group'>
-                                <a href="{!! route('visits.edit', [$visit->id]) !!}" class='btn btn-success'><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                                {!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                            </div>
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                {{-- TODO: switch statement --}}
+                <i class="fa fa-envelope bg-blue"></i>
+
+                      <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> {!! $visit->made !!}</span>
+
+                        <h3 class="timeline-header">{!! $visit_type[$visit->type] !!}</h3>
+
+                        <div class="timeline-body">
+                          {!! $visit->notes !!}
+                        </div>
+                        <div class="timeline-footer">
+                            {!! Form::open(['route' => ['visits.destroy', $visit->id], 'method' => 'delete']) !!}
+                                <div class='btn-group'>
+                                    <a href="{!! route('visits.edit', [$visit->id]) !!}" class='btn btn-success'><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                </div>
+                                {!! Form::close() !!}
+                        </div>
+                      </div>
+            </li>
+            @endforeach
+        </ul>
     </div>
+</div>
