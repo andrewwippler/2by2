@@ -17,7 +17,6 @@ class Household extends Model
 
     public $table = 'households';
 
-
     protected $dates = [
         'deleted_at',
         'first_contacted',
@@ -80,44 +79,36 @@ class Household extends Model
     /**
      * Format date
      */
-     public function setFirstContactedAttribute($date)
-     {
-         $this->attributes['first_contacted'] = Carbon::parse($date);
-     }
+    public function setFirstContactedAttribute($date)
+    {
+        return $this->attributes['first_contacted'] = ($date != '')?
+                Carbon::parse($date): null;
+    }
 
-     /**
-      * Format date
-      */
-      public function setPlanToVisitAttribute($date)
-      {
-          if ($date)
-          {
-              $this->attributes['plan_to_visit'] = Carbon::parse($date);
-          }
-      }
+    /**
+    * Format date
+    */
+    public function setPlanToVisitAttribute($date)
+    {
+        return $this->attributes['plan_to_visit'] = ($date != '')?
+                Carbon::parse($date): null;
+    }
 
-      /**
-       * Format date
-       */
-       public function getFirstContactedAttribute($date)
-       {
-           return Carbon::parse($date)->format('Y-m-d');
-       }
+    /**
+    * Format date
+    */
+    public function getFirstContactedAttribute($date)
+    {
+        return ($date != null) ? Carbon::parse($date)->toDateString() : null;
+    }
 
-       /**
-        * Format date
-        */
-        public function getPlanToVisitAttribute($date)
-        {
-            if ($date != '')
-            {
-                return Carbon::parse($date)->format('Y-m-d');
-            }
-            else
-            {
-                return null;
-            }
-        }
+    /**
+    * Format date
+    */
+    public function getPlanToVisitAttribute($date)
+    {
+        return ($date != null) ? Carbon::parse($date)->toDateString() : null;
+    }
 
 
     /**
