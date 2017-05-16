@@ -58,10 +58,10 @@
                         </div>
                         <div class="timeline-footer">
                             {!! Form::open(['route' => ['visits.destroy', $visit->id], 'method' => 'delete']) !!}
-                                <div class='btn-group'>
-                                    <a href="{!! route('visits.edit', [$visit->id]) !!}" class='btn btn-success'><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                                </div>
+
+                                    <a href="{!! route('visits.edit', [$visit->id]) !!}" class='btn btn-success btn-sm'><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'onclick' => "return confirm('Are you sure?')"]) !!}
+
                                 {!! Form::close() !!}
                         </div>
                       </div>
