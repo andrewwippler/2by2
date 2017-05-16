@@ -144,6 +144,16 @@ class ProfileController extends AppBaseController
             return redirect(route('profiles.index'));
         }
 
+        if ($profile->user_id == \Auth::id()) {
+            $teams = Team::all();
+            $sunday_schools = SundaySchool::all();
+
+            return view('profiles.edit')
+                ->with('profile', $profile)
+                ->with('sunday_schools', $this->makePrettyArray($sunday_schools))
+                ->with('teams', $this->makePrettyArray($teams));
+        }
+
         if (\Entrust::hasRole('admin')) {
 
             $teams = Team::all();
@@ -155,16 +165,6 @@ class ProfileController extends AppBaseController
                 ->with('sunday_schools', $this->makePrettyArray($sunday_schools))
                 ->with('teams', $this->makePrettyArray($teams))
                 ->with('users', $this->makePrettyArray($users));
-        }
-
-        if ($profile->user_id == \Auth::id()) {
-            $teams = Team::all();
-            $sunday_schools = SundaySchool::all();
-
-            return view('profiles.edit')
-                ->with('profile', $profile)
-                ->with('sunday_schools', $this->makePrettyArray($sunday_schools))
-                ->with('teams', $this->makePrettyArray($teams));
         }
 
         Flash::error('Profile not found');
