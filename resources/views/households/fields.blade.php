@@ -80,7 +80,7 @@
 <!-- Plan To Visit Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('plan_to_visit', 'Plan To Visit:') !!}
-    {!! Form::date('plan_to_visit', null, ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'plan_to_visit', $household->plan_to_visit, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Interested In Field -->
@@ -92,7 +92,7 @@
 <!-- First Contacted Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('first_contacted', 'First Contacted:') !!}
-    {!! Form::date('first_contacted', null, ['class' => 'form-control']) !!}
+    {!! Form::input('date', 'first_contacted', $household->first_contacted, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Point Of Contact Field -->

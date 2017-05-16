@@ -7,7 +7,7 @@
         </h1>
     </section>
     <div class="content">
-        @include('adminlte-templates::common.errors')
+        @include('flash::message')
         <div class="box box-primary">
 
             <div class="box-body">
@@ -23,7 +23,7 @@
                     <!-- Last Name Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('last_name', 'Last Name:') !!} <span class="text-danger small">required</span>
-                        {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+                        {!! Form::text('last_name', null, ['class' => 'form-control', 'required']) !!}
                     </div>
 
 <!-- BEGIN PERSON -->
@@ -32,7 +32,7 @@
     <!-- First Name Field -->
     <div class="form-group col-sm-3 col-xs-12">
         {!! Form::label('first_name[]', 'First Name:') !!} <span class="text-danger small">required</span>
-        {!! Form::text('first_name[]', null, ['class' => 'form-control']) !!}
+        {!! Form::text('first_name[]', null, ['class' => 'form-control', 'required']) !!}
     </div>
 
     <!-- Email Field -->
@@ -104,7 +104,7 @@
                         <!-- First Contacted Field -->
                         <div class="form-group col-sm-6">
                             {!! Form::label('first_contacted', 'First Contacted:') !!}
-                            {!! Form::date('first_contacted', $today, ['class' => 'form-control']) !!}
+                            {!! Form::input('date', 'first_contacted', date("Y-m-d"), ['class' => 'form-control']) !!}
                         </div>
 
                     <!-- Submit Field -->

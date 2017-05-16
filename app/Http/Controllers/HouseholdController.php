@@ -106,30 +106,46 @@ class HouseholdController extends AppBaseController
     public function store(CreateHouseholdRequest $request)
     {
         $input = $request->all();
+        $people = Array();
 
-        $people_count = count($input['first_name']);
+        if ($input['first_name'])
+        {
+            $people_count = count($input['first_name']);
 
-        for ($i=0; $i < $people_count; $i++) {
-            if ($input['first_name'][$i] != '') {
-                $people[] = new Person([
-                    'first_name' => $input['first_name'][$i],
-                    'email' => $input['email'][$i],
-                    'phone_number' => $input['phone_number'][$i],
-                    'relationship' => $input['relationship'][$i],
-                ]);
+            for ($i=0; $i < $people_count; $i++)
+            {
+                if ($input['first_name'][$i] != '')
+                {
+                    $people[] = new Person([
+                        'first_name' => $input['first_name'][$i],
+                        'email' => $input['email'][$i],
+                        'phone_number' => $input['phone_number'][$i],
+                        'relationship' => $input['relationship'][$i],
+                    ]);
+                }
             }
         }
 
-        if (count($people) > 0) {
+        if (count($people) > 0)
+        {
             $household = $this->householdRepository->create($input)->people()->saveMany($people);
 
             Flash::success('Household saved successfully.');
 
             return redirect(route('households.index'));
-        } else {
-            Flash::failure('Household save failed. A person was missing.');
+        }
+        else
+        {
+            Flash::error('Household save failed. A person was missing.');
 
-            return redirect(route('households.index'));
+            $dept = Department::all();
+            $rela = Relationship::all();
+
+            return view('households.create')
+                ->with('department', $this->makePrettyArray($dept))
+                ->with('relationship', $this->makePrettyArray($rela))
+                ->with('user', Auth::id())
+                ->with('today', \Carbon\Carbon::now());
         }
 
     }

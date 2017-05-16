@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 /**
  * Class Household
@@ -17,7 +18,11 @@ class Household extends Model
     public $table = 'households';
 
 
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+        'first_contacted',
+        'plan_to_visit',
+    ];
 
 
     public $fillable = [
@@ -71,6 +76,49 @@ class Household extends Model
         'last_name' => 'required',
         'user' => 'required'
     ];
+
+    /**
+     * Format date
+     */
+     public function setFirstContactedAttribute($date)
+     {
+         $this->attributes['first_contacted'] = Carbon::parse($date);
+     }
+
+     /**
+      * Format date
+      */
+      public function setPlanToVisitAttribute($date)
+      {
+          if ($date)
+          {
+              $this->attributes['plan_to_visit'] = Carbon::parse($date);
+          }
+      }
+
+      /**
+       * Format date
+       */
+       public function getFirstContactedAttribute($date)
+       {
+           return Carbon::parse($date)->format('Y-m-d');
+       }
+
+       /**
+        * Format date
+        */
+        public function getPlanToVisitAttribute($date)
+        {
+            if ($date != '')
+            {
+                return Carbon::parse($date)->format('Y-m-d');
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
