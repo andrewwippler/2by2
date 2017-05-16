@@ -69,12 +69,13 @@ class HouseholdController extends AppBaseController
     {
         $dept = Department::all();
         $rela = Relationship::all();
+        // $prof = Profile::find(); // find user's profile
 
         return view('households.create')
             ->with('department', $this->makePrettyArray($dept))
             ->with('relationship', $this->makePrettyArray($rela))
             ->with('user', Auth::id())
-            ->with('today', \Carbon\Carbon::now());
+            ->with('profile', $prof);
     }
 
     /**

@@ -23,7 +23,10 @@ class Profile extends Model
     public $fillable = [
         'sunday_school_id',
         'user_id',
-        'team_id'
+        'team_id',
+        'default_city',
+        'default_state',
+        'default_zip',
     ];
 
     /**
@@ -34,7 +37,10 @@ class Profile extends Model
     protected $casts = [
         'sunday_school_id' => 'integer',
         'team_id' => 'integer',
-        'user_id' => 'integer'
+        'user_id' => 'integer',
+        'default_city' => 'string',
+        'default_state' => 'string',
+        'default_zip' => 'integer',
     ];
 
     /**
