@@ -23,15 +23,15 @@ Note: first registered user becomes admin.
 
 ## Todo:
 
- -[] Personal Reports
- -[] Site-wide Reporting
- -[] Assign admin
- -[] Team Leader Role (to view all in team)
- -[] Sunday School Leader Role (to view all in SS)
- -[] Ordering of items
- -[] Contact history icons
- -[] Metrics on actions done
- -[] Un-delete Prospects items
+- [ ] Personal Reports
+- [ ] Site-wide Reporting
+- [ ] Assign admin
+- [ ] Team Leader Role (to view all in team)
+- [ ] Sunday School Leader Role (to view all in SS)
+- [ ] Ordering of items
+- [ ] Contact history icons
+- [ ] Metrics on actions done
+- [ ] Un-delete Prospects items
 
 
 # License
