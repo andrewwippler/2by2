@@ -45,7 +45,7 @@ trait MakeVisitTrait
         return array_merge([
             'type' => $fake->randomDigitNotNull,
             'notes' => $fake->text,
-            'made' => $fake->date('Y-m-d H:i:s'),
+            'made' => $fake->date('M j, Y'),
         ], $visitFields);
     }
 }
