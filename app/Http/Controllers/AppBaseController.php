@@ -19,4 +19,13 @@ class AppBaseController extends BaseController
 
         return $output;
     }
+
+    public function makeFullPrettyArray($input)
+    {
+        for ($i=0; $i < count($input); $i++) {
+            $output[$i] = $input[$i];
+        }
+
+        return $output;
+    }
 }
