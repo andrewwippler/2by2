@@ -12,9 +12,9 @@ class ProspectStatusTableSeeder extends Seeder
     public function run()
     {
         DB::table('prospect_statuses')->insert([
-            ['name' => 'Active'],
-            ['name' => 'Inactive'],
-            ['name' => 'Dead End'],
+            ['name' => 'Active', 'position' => 0],
+            ['name' => 'Inactive', 'position' => 1],
+            ['name' => 'Dead End', 'position' => 2],
         ]);
     }
 }

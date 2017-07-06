@@ -12,12 +12,12 @@ class SpiritualConditionTableSeeder extends Seeder
     public function run()
     {
         DB::table('spiritual_conditions')->insert([
-            ['name' => '--'],
-            ['name' => 'Attended'],
-            ['name' => 'Saved'],
-            ['name' => 'Member'],
-            ['name' => 'Baptized'],
-            ['name' => 'Sunday School'],
+            ['name' => '--', 'position' => 0],
+            ['name' => 'Attended', 'position' => 1],
+            ['name' => 'Saved', 'position' => 2],
+            ['name' => 'Member', 'position' => 3],
+            ['name' => 'Baptized', 'position' => 4],
+            ['name' => 'Sunday School', 'position' => 5],
         ]);
     }
 }

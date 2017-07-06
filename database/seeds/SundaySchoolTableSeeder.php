@@ -12,7 +12,7 @@ class SundaySchoolTableSeeder extends Seeder
     public function run()
     {
         DB::table('sunday_schools')->insert([
-            ['name' => '--'],
+            ['name' => '--', 'position' => 0],
         ]);
     }
 }

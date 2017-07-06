@@ -12,20 +12,20 @@ class LifeStageTableSeeder extends Seeder
     public function run()
     {
         DB::table('life_stages')->insert([
-            ['name' => '--'],
-            ['name' => 'Infant'],
-            ['name' => 'Baby'],
-            ['name' => 'Toddler'],
-            ['name' => 'Kindergarten'],
-            ['name' => 'Elementary'],
-            ['name' => 'Junior High'],
-            ['name' => 'High School'],
-            ['name' => '18-24'],
-            ['name' => '25-34'],
-            ['name' => '35-44'],
-            ['name' => '45-54'],
-            ['name' => '55-64'],
-            ['name' => '65+'],
+            ['name' => '--', 'position' => 0],
+            ['name' => 'Infant', 'position' => 1],
+            ['name' => 'Baby', 'position' => 2],
+            ['name' => 'Toddler', 'position' => 3],
+            ['name' => 'Kindergarten', 'position' => 4],
+            ['name' => 'Elementary', 'position' => 5],
+            ['name' => 'Junior High', 'position' => 6],
+            ['name' => 'High School', 'position' => 7],
+            ['name' => '18-24', 'position' => 8],
+            ['name' => '25-34', 'position' => 9],
+            ['name' => '35-44', 'position' => 10],
+            ['name' => '45-54', 'position' => 11],
+            ['name' => '55-64', 'position' => 12],
+            ['name' => '65+', 'position' => 13],
         ]);
     }
 }

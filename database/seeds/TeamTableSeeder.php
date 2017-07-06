@@ -12,7 +12,7 @@ class TeamTableSeeder extends Seeder
     public function run()
     {
         DB::table('teams')->insert([
-            ['name' => '--'],
+            ['name' => '--', 'position' => 0],
         ]);
     }
 }

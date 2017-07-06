@@ -12,12 +12,12 @@ class MaritalStatusTableSeeder extends Seeder
     public function run()
     {
         DB::table('marital_statuses')->insert([
-            ['name' => '--'],
-            ['name' => 'Married'],
-            ['name' => 'Divorced'],
-            ['name' => 'Separated'],
-            ['name' => 'Widow'],
-            ['name' => 'Widower'],
+            ['name' => '--', 'position' => 0],
+            ['name' => 'Married', 'position' => 1],
+            ['name' => 'Divorced', 'position' => 2],
+            ['name' => 'Separated', 'position' => 3],
+            ['name' => 'Widow', 'position' => 4],
+            ['name' => 'Widower', 'position' => 5],
         ]);
     }
 }

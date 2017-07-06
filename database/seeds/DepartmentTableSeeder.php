@@ -12,10 +12,10 @@ class DepartmentTableSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            ['name' => 'English'],
-            ['name' => 'Korean'],
-            ['name' => 'Sign Language'],
-            ['name' => 'Spanish'],
+            ['name' => 'English', 'position' => 0],
+            ['name' => 'Korean', 'position' => 2],
+            ['name' => 'Sign Language', 'position' => 3],
+            ['name' => 'Spanish', 'position' => 1],
         ]);
     }
 }
