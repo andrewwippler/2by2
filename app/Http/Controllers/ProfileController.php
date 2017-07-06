@@ -43,7 +43,7 @@ class ProfileController extends AppBaseController
 
             return view('profiles.index')
                 ->with('profiles', $profiles)
-                ->with('users', $this->makePrettyArray($users))
+                ->with('users', $this->makeFullPrettyArray($users))
                 ->with('teams', $this->makePrettyArray($team))
                 ->with('sunday_schools', $this->makePrettyArray($sunday_schools));
 
