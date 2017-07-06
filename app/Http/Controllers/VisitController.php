@@ -32,7 +32,7 @@ class VisitController extends AppBaseController
     public function index(Request $request)
     {
         $this->visitRepository->pushCriteria(new RequestCriteria($request));
-        $visits = $this->visitRepository->all();
+        $visits = $this->visitRepository->all()->sortBy('position');
 
         $visit_types = VisitType::all();
 

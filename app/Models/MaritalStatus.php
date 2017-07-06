@@ -15,13 +15,14 @@ class MaritalStatus extends Model
     use SoftDeletes;
 
     public $table = 'marital_statuses';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'name'
+        'name',
+        'position'
     ];
 
     /**
@@ -40,8 +41,9 @@ class MaritalStatus extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'position' => 'integer|min:0',
     ];
 
-    
+
 }

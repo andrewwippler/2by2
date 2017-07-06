@@ -30,7 +30,7 @@ class SundaySchoolController extends AppBaseController
     public function index(Request $request)
     {
         $this->sundaySchoolRepository->pushCriteria(new RequestCriteria($request));
-        $sundaySchools = $this->sundaySchoolRepository->all();
+        $sundaySchools = $this->sundaySchoolRepository->all()->sortBy('position');
 
         return view('sunday_schools.index')
             ->with('sundaySchools', $sundaySchools);

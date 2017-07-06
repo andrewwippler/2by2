@@ -30,7 +30,7 @@ class DepartmentController extends AppBaseController
     public function index(Request $request)
     {
         $this->departmentRepository->pushCriteria(new RequestCriteria($request));
-        $departments = $this->departmentRepository->all();
+        $departments = $this->departmentRepository->all()->sortBy('position');
 
         return view('departments.index')
             ->with('departments', $departments);

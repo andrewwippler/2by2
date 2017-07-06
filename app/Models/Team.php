@@ -21,7 +21,8 @@ class Team extends Model
 
 
     public $fillable = [
-        'name'
+        'name',
+        'position'
     ];
 
     /**
@@ -39,7 +40,8 @@ class Team extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'position' => 'integer|min:0',
     ];
 
     // /**

@@ -30,7 +30,7 @@ class RelationshipController extends AppBaseController
     public function index(Request $request)
     {
         $this->relationshipRepository->pushCriteria(new RequestCriteria($request));
-        $relationships = $this->relationshipRepository->all();
+        $relationships = $this->relationshipRepository->all()->sortBy('position');
 
         return view('relationships.index')
             ->with('relationships', $relationships);

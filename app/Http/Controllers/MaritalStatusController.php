@@ -30,7 +30,7 @@ class MaritalStatusController extends AppBaseController
     public function index(Request $request)
     {
         $this->maritalStatusRepository->pushCriteria(new RequestCriteria($request));
-        $maritalStatuses = $this->maritalStatusRepository->all();
+        $maritalStatuses = $this->maritalStatusRepository->all()->sortBy('position');
 
         return view('marital_statuses.index')
             ->with('maritalStatuses', $maritalStatuses);

@@ -30,7 +30,7 @@ class LifeStageController extends AppBaseController
     public function index(Request $request)
     {
         $this->lifeStageRepository->pushCriteria(new RequestCriteria($request));
-        $lifeStages = $this->lifeStageRepository->all();
+        $lifeStages = $this->lifeStageRepository->all()->sortBy('position');
 
         return view('life_stages.index')
             ->with('lifeStages', $lifeStages);

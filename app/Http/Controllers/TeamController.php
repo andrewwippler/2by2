@@ -30,7 +30,7 @@ class TeamController extends AppBaseController
     public function index(Request $request)
     {
         $this->teamRepository->pushCriteria(new RequestCriteria($request));
-        $teams = $this->teamRepository->all();
+        $teams = $this->teamRepository->all()->sortBy('position');
 
         return view('teams.index')
             ->with('teams', $teams);

@@ -30,7 +30,7 @@ class SpiritualConditionController extends AppBaseController
     public function index(Request $request)
     {
         $this->spiritualConditionRepository->pushCriteria(new RequestCriteria($request));
-        $spiritualConditions = $this->spiritualConditionRepository->all();
+        $spiritualConditions = $this->spiritualConditionRepository->all()->sortBy('position');
 
         return view('spiritual_conditions.index')
             ->with('spiritualConditions', $spiritualConditions);

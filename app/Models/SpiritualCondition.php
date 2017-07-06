@@ -15,13 +15,14 @@ class SpiritualCondition extends Model
     use SoftDeletes;
 
     public $table = 'spiritual_conditions';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'name'
+        'name',
+        'position'
     ];
 
     /**
@@ -40,8 +41,9 @@ class SpiritualCondition extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'position' => 'integer|min:0',
     ];
 
-    
+
 }

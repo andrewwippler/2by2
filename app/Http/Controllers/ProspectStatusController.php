@@ -30,7 +30,7 @@ class ProspectStatusController extends AppBaseController
     public function index(Request $request)
     {
         $this->prospectStatusRepository->pushCriteria(new RequestCriteria($request));
-        $prospectStatuses = $this->prospectStatusRepository->all();
+        $prospectStatuses = $this->prospectStatusRepository->all()->sortBy('position');
 
         return view('prospect_statuses.index')
             ->with('prospectStatuses', $prospectStatuses);

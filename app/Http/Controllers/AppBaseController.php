@@ -13,16 +13,31 @@ class AppBaseController extends BaseController
 
     public function makePrettyArray($input)
     {
-        for ($i=0; $i < count($input); $i++) {
-            $output[$i] = $input[$i]->name;
+        $output = [];
+        for ($i=0; $i < count($input); $i++)
+        {
+            $pos = $input[$i]->position ?? 0;
+            if (array_key_exists($pos, $output))
+            {
+                $old = $output[$pos];
+                $output[$pos] = $input[$i]->name;
+                $output[] = $old;
+            }
+            else
+            {
+                $output[$pos] = $input[$i]->name;
+            }
         }
+
+        ksort($output);
 
         return $output;
     }
 
     public function makeFullPrettyArray($input)
     {
-        for ($i=0; $i < count($input); $i++) {
+        for ($i=0; $i < count($input); $i++)
+        {
             $output[$i] = $input[$i];
         }
 
