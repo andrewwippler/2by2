@@ -13,23 +13,29 @@ class AppBaseController extends BaseController
 
     public function makePrettyArray($input)
     {
-        $output = [];
+        // Create array by the position field
+        $sortedArray = [];
         for ($i=0; $i < count($input); $i++)
         {
             $pos = $input[$i]->position ?? 0;
-            if (array_key_exists($pos, $output))
+            if (array_key_exists($pos, $sortedArray))
             {
-                $old = $output[$pos];
-                $output[$pos] = $input[$i]->name;
-                $output[] = $old;
+                $old = $sortedArray[$pos];
+                $sortedArray[$pos] = ['id' => $input[$i]->id, 'name' => $input[$i]->name];
+                array_unshift($sortedArray, $old);
             }
             else
             {
-                $output[$pos] = $input[$i]->name;
+                $sortedArray[$pos] = ['id' => $input[$i]->id, 'name' => $input[$i]->name];
             }
         }
 
-        ksort($output);
+        ksort($sortedArray);
+
+        // Reassemble array by ID for the forms to get the right data.
+        foreach ($sortedArray as $key => $value) {
+            $output[$value['id']] = $value['name'];
+        }
 
         return $output;
     }
