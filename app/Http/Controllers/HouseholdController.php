@@ -48,6 +48,7 @@ class HouseholdController extends AppBaseController
             }
             else
             {
+                $peopleArray = [];
                 foreach ($household['relations']['people'] as $person)
                 {
                     $peopleArray[] =  $person->first_name;
