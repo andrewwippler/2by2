@@ -163,7 +163,8 @@ class HouseholdController extends AppBaseController
      */
     public function show($id)
     {
-        $household = $this->householdRepository->findWithoutFail($id)->load('people','visits');
+        // Ordering the visits based on date rather than on creation
+        $household = $this->householdRepository->findWithoutFail($id)->load(['people', 'visits' => function ($query) { $query->orderBy('created_at'); }]);
 
         if (empty($household) || $household->user != Auth::id()) {
             Flash::error('Household not found');
