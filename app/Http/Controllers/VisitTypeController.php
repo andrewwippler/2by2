@@ -43,7 +43,9 @@ class VisitTypeController extends AppBaseController
      */
     public function create()
     {
-        return view('visit_types.create');
+        return view('visit_types.create')
+            ->with('colors', $this->colors)
+            ->with('icons', $this->icons);
     }
 
     /**
@@ -101,7 +103,12 @@ class VisitTypeController extends AppBaseController
             return redirect(route('visitTypes.index'));
         }
 
-        return view('visit_types.edit')->with('visitType', $visitType);
+        \Debugbar::info($visitType);
+
+        return view('visit_types.edit')
+            ->with('visitType', $visitType)
+            ->with('colors', $this->colors)
+            ->with('icons', $this->icons);
     }
 
     /**

@@ -11,6 +11,35 @@ class AppBaseController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public $colors = [
+        'gray',
+        'black',
+        'red',
+        'maroon',
+        'orange',
+        'yellow',
+        'green',
+        'teal',
+        'light-blue',
+        'aqua',
+        'navy',
+        'purple',
+    ];
+
+    public $icons = [
+        ['name' => 'visit', 'icon' => 'fa-map-marker', 'unicode' => '&#xf041;'],
+        ['name' => 'call', 'icon' => 'fa-phone', 'unicode' => '&#xf095;'],
+        ['name' => 'text', 'icon' => 'fa-comments-o', 'unicode' => '&#xf0e6;'],
+        ['name' => 'email', 'icon' => 'fa-envelope-o', 'unicode' => '&#xf003;'],
+        ['name' => 'letter', 'icon' => 'fa-file-text-o', 'unicode' => '&#xf0f6;'],
+        ['name' => 'post card', 'icon' => 'fa-address-card-o', 'unicode' => '&#xf2bc;'],
+        ['name' => 'other', 'icon' => 'fa-paperclip', 'unicode' => '&#xf0c6;'],
+        ['name' => 'gift', 'icon' => 'fa-gift', 'unicode' => '&#xf06b;'],
+        ['name' => 'user', 'icon' => 'fa-user', 'unicode' => '&#xf007;'],
+        ['name' => 'people', 'icon' => 'fa-users', 'unicode' => '&#xf0c0;'],
+        // ['name' => '', 'icon' => 'fa-', 'unicode' => '&#x;'],
+    ];
+
     public function makePrettyArray($input)
     {
         // Create array by the position field

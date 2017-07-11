@@ -44,6 +44,7 @@ trait MakeVisitTypeTrait
 
         return array_merge([
             'name' => $fake->word,
+            'posistion' => $fake->integer,
         ], $visitTypeFields);
     }
 }

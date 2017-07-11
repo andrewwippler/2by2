@@ -29,7 +29,7 @@ Note: first registered user becomes admin.
 - [ ] Team Leader Role (to view all in team)
 - [ ] Sunday School Leader Role (to view all in SS)
 - [X] Ordering of items
-- [ ] Contact history icons
+- [X] Contact history icons
 - [ ] Metrics on actions done
 - [ ] Un-delete Prospects items
 

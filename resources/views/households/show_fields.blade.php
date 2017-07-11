@@ -47,12 +47,12 @@
             <li>
 
                 {{-- TODO: switch statement --}}
-                <i class="fa fa-envelope bg-blue"></i>
+                <i class="fa {{ $icons[$visit_type[$visit->type]->icon]['icon'] }} bg-{{ $colors[$visit_type[$visit->type]->color] }}"></i>
 
                       <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> {!! $visit->made !!}</span>
 
-                        <h3 class="timeline-header">{!! $visit_type[$visit->type] !!}</h3>
+                        <h3 class="timeline-header">{!! $visit_type[$visit->type]->name !!}</h3>
 
                         <div class="timeline-body">
                           {!! $visit->notes !!}

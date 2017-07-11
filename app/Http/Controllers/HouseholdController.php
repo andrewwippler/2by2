@@ -180,10 +180,12 @@ class HouseholdController extends AppBaseController
             ->with('household', $household)
             ->with('people', $household['relations']['people'])
             ->with('visits', $household['relations']['visits'])
-            ->with('visit_type', $this->makePrettyArray($visi))
+            ->with('visit_type', $visi)
             ->with('department', $this->makePrettyArray($dept))
             ->with('relationship', $this->makePrettyArray($rela))
-            ->with('user', Auth::id());
+            ->with('user', Auth::id())
+            ->with('colors', $this->colors)
+            ->with('icons', $this->icons);
 
     }
 

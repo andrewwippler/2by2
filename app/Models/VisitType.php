@@ -22,7 +22,9 @@ class VisitType extends Model
 
     public $fillable = [
         'name',
-        'position'
+        'position',
+        'color',
+        'icon',
     ];
 
     /**
@@ -43,6 +45,8 @@ class VisitType extends Model
     public static $rules = [
         'name' => 'required',
         'position' => 'integer|min:0',
+        'color' => 'required',
+        'icon' => 'required',
     ];
 
 
