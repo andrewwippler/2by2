@@ -1,0 +1,12 @@
+/public/hot
+/public/storage
+/public/css/*
+/storage/*.key
+/.idea
+/.vagrant
+/.circleci
+Homestead.json
+Homestead.yaml
+npm-debug.log
+.env
+database/database.sqlite

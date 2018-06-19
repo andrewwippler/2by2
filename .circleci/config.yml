@@ -1,0 +1,72 @@
+version: 2
+jobs:
+  precacheNode:
+    docker:
+      - image: circleci/node:8-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+  precacheComposer:
+    docker:
+      - image: circleci/php:7.2-apache-stretch-node-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "composer.json" }}
+      - run: composer install
+      - save_cache:
+          key: dependency-cache-{{ checksum "composer.json" }}
+          paths:
+            - vendor
+  test:
+    docker:
+      - image: circleci/php:7.2-apache-stretch-node-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "composer.json" }}
+      - run: |
+          touch database/database.sqlite
+          chmod 777 database/database.sqlite
+          phpunit
+  build:
+    docker:
+      - image: circleci/buildpack-deps:16.04-curl-dind
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true 
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "composer.json" }}
+      - run: |
+          docker build -t d.wplr.rocks/2by2:latest -t d.wplr.rocks/2by2:$CIRCLE_BUILD_NUM -t d.wplr.rocks/2by2:$CIRCLE_SHA1 .
+          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD -e $DOCKERHUB_EMAIL d.wplr.rocks
+          docker push d.wplr.rocks/2by2
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - precacheComposer
+      - precacheNode
+      - test:
+          requires:
+            - precacheComposer
+            - precacheNode
+      - build:
+          requires:
+            - precacheComposer
+            - precacheNode
+            - test
+          filters:
+            branches:
+              only: develop
