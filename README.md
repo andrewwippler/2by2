@@ -1,5 +1,6 @@
 # 2 by 2 - Personal Prospect Tracker
-[![Build Status](https://travis-ci.org/andrewwippler/2by2.svg?branch=master)](https://travis-ci.org/andrewwippler/2by2)
+
+[![CircleCI](https://circleci.com/gh/andrewwippler/2by2.svg?style=svg)](https://circleci.com/gh/andrewwippler/2by2)
 
 This is my rendition of a personal prospect tracker for Soul Winning. You may [use my personal installation](https://2by2.andrewwippler.com), but you may want to set up your own to personalize all the options.
 
@@ -21,7 +22,7 @@ npm run production
 
 Note: first registered user becomes admin.
 
-## Todo:
+## Todo
 
 - [ ] Personal Reports
 - [ ] Site-wide Reporting
@@ -33,8 +34,7 @@ Note: first registered user becomes admin.
 - [ ] Metrics on actions done
 - [ ] Un-delete Prospects items
 
-
-# License
+## License
 
 Copyright 2017 Andrew Wippler
 
