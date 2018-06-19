@@ -3,6 +3,7 @@ jobs:
   precacheNode:
     docker:
       - image: circleci/node:8-browsers
+    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -15,6 +16,7 @@ jobs:
   precacheComposer:
     docker:
       - image: bitnami/laravel
+    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -27,6 +29,7 @@ jobs:
   test:
     docker:
       - image: phpunit/phpunit
+    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -40,6 +43,7 @@ jobs:
   build:
     docker:
       - image: circleci/buildpack-deps:16.04-curl-dind
+    working_directory: /root
     steps:
       - checkout
       - setup_remote_docker:
