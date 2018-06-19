@@ -14,7 +14,7 @@ jobs:
             - node_modules
   precacheComposer:
     docker:
-      - image: composer
+      - image: bitnami/laravel
     steps:
       - checkout
       - restore_cache:
