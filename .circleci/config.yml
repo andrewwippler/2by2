@@ -3,7 +3,6 @@ jobs:
   precacheNode:
     docker:
       - image: circleci/node:8-browsers
-    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -16,7 +15,6 @@ jobs:
   precacheComposer:
     docker:
       - image: bitnami/laravel
-    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -29,7 +27,6 @@ jobs:
   test:
     docker:
       - image: phpunit/phpunit
-    working_directory: /root
     steps:
       - checkout
       - restore_cache:
@@ -37,13 +34,14 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "composer.json" }}
       - run: |
+          mv /home/bitnami/vendor .
+          mv /home/circleci/project/node_modules .
           touch database/database.sqlite
           chmod 777 database/database.sqlite
           phpunit
   build:
     docker:
       - image: circleci/buildpack-deps:16.04-curl-dind
-    working_directory: /root
     steps:
       - checkout
       - setup_remote_docker:
@@ -53,6 +51,8 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "composer.json" }}
       - run: |
+          mv /home/bitnami/vendor .
+          mv /home/circleci/project/node_modules .
           docker build -t d.wplr.rocks/2by2:latest -t d.wplr.rocks/2by2:$CIRCLE_BUILD_NUM -t d.wplr.rocks/2by2:$CIRCLE_SHA1 .
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD -e $DOCKERHUB_EMAIL d.wplr.rocks
           docker push d.wplr.rocks/2by2
