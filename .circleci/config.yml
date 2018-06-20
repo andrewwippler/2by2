@@ -19,14 +19,21 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "composer.json" }}
-      - run: composer install
+      - run: |
+          composer install
+          touch database/database.sqlite
+          cp .env.circle .env
+          php artisan migrate
+          php artisan db:seed
       - save_cache:
           key: dependency-cache-{{ checksum "composer.json" }}
           paths:
             - vendor
+            - database
   test:
     docker:
-      - image: phpunit/phpunit
+      - image: phpunit/phpunit:5.7.12
+    working_directory: /home/bitnami/project
     steps:
       - checkout
       - restore_cache:
@@ -34,10 +41,8 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "composer.json" }}
       - run: |
-          mv /home/bitnami/project/vendor .
           mv /home/circleci/project/node_modules .
-          touch database/database.sqlite
-          chmod 777 database/database.sqlite
+          cp .env.circle .env
           phpunit
   build:
     docker:
