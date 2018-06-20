@@ -79,4 +79,4 @@ workflows:
             - test
           filters:
             branches:
-              only: develop
+              only: master
