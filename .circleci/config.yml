@@ -63,7 +63,7 @@ jobs:
       - run: |
           sudo mv /home/bitnami/project/vendor .
           docker build -t d.wplr.rocks/2by2:latest -t d.wplr.rocks/2by2:$CIRCLE_BUILD_NUM -t d.wplr.rocks/2by2:$CIRCLE_SHA1 .
-          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD -e $DOCKERHUB_EMAIL d.wplr.rocks
+          docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD d.wplr.rocks
           docker push d.wplr.rocks/2by2
 workflows:
   version: 2
