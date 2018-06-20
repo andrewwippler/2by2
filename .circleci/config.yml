@@ -47,11 +47,12 @@ jobs:
           phpunit
   build:
     docker:
-      - image: circleci/buildpack-deps:16.04-curl-dind
+      - image: circleci/node:8-browsers
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true 
+          docker_layer_caching: true
+          version: 17.09.0-ce
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - restore_cache:
