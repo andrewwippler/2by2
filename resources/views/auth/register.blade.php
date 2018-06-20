@@ -36,13 +36,13 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>2 by 2</b> Visit tracker</a>
+        <a href="{{ secure_url('/home') }}"><b>2 by 2</b> Visit tracker</a>
     </div>
 
     <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
 
-        <form method="post" action="{{ url('/register') }}">
+        <form method="post" action="{{ secure_url('/register') }}">
 
             {!! csrf_field() !!}
 
@@ -102,7 +102,7 @@
             </div>
         </form>
 
-        <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ secure_url('/login') }}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
 </div>

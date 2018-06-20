@@ -61,14 +61,14 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="{!! url('profiles').'/'!!}{!! Auth::user()->id !!}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{!! secure_url('profiles').'/'!!}{!! Auth::user()->id !!}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
+                                        <a href="{!! secure_url('/logout') !!}" class="btn btn-default btn-flat"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </div>
@@ -108,7 +108,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
+                <a class="navbar-brand" href="{!! secure_url('/') !!}">
                     2 by 2
                 </a>
             </div>
@@ -116,14 +116,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 {{-- <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
+                    <li><a href="{!! secure_url('/home') !!}">Home</a></li>
                 </ul> --}}
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
+                    <li><a href="{!! secure_url('/login') !!}">Login</a></li>
+                    <li><a href="{!! secure_url('/register') !!}">Register</a></li>
                 </ul>
             </div>
         </div>

@@ -94,5 +94,5 @@
 @endrole
 
 <li class="treeview {{ Request::is('profiles*') ? 'active' : '' }}">
-    <a href="{!! url('profiles').'/'!!}{!! Auth::user()->id !!}/edit"><i class="fa fa-cog"></i><span>My Profile</span></a>
+    <a href="{!! secure_url('profiles').'/'!!}{!! Auth::user()->id !!}/edit"><i class="fa fa-cog"></i><span>My Profile</span></a>
 </li>
