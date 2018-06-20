@@ -55,6 +55,9 @@ jobs:
           version: 17.09.0-ce
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+      - run: |
+          mkdir /home/bitnami
+          chmod 777 /home/bitnami
       - restore_cache:
           key: composer-cache-{{ checksum "composer.json" }}
       - run: |
