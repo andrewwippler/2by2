@@ -56,12 +56,12 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: |
-          mkdir /home/bitnami
-          chmod 777 /home/bitnami
+          sudo mkdir /home/bitnami
+          sudo chmod 777 /home/bitnami
       - restore_cache:
           key: composer-cache-{{ checksum "composer.json" }}
       - run: |
-          mv /home/bitnami/project/vendor .
+          sudo mv /home/bitnami/project/vendor .
           mv /home/circleci/project/node_modules .
           docker build -t d.wplr.rocks/2by2:latest -t d.wplr.rocks/2by2:$CIRCLE_BUILD_NUM -t d.wplr.rocks/2by2:$CIRCLE_SHA1 .
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD -e $DOCKERHUB_EMAIL d.wplr.rocks
