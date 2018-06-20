@@ -19,7 +19,7 @@ RUN set -ex; \
     ; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
-    docker-php-ext-install gd mysqli opcache; \
+    docker-php-ext-install gd pdo_mysql pdo mbstring opcache; \
     \
     runDeps="$( \
         scanelf --needed --nobanner --recursive \
@@ -55,8 +55,7 @@ ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 WORKDIR /var/www/html
 ADD https://getcomposer.org/download/1.6.5/composer.phar /usr/local/bin/composer
-RUN cp /var/www/html/.env.example /var/www/html/.env && \
-    chmod +x /usr/local/bin/composer && \
+RUN chmod +x /usr/local/bin/composer && \
     /usr/local/bin/composer install && \
     chown -R www-data:www-data /var/www/html
 
